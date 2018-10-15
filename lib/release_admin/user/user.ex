@@ -1,13 +1,15 @@
 defmodule ReleaseAdmin.User do
   use Ecto.Schema
-  import Ecto.Changeset
-  import Ecto.Query
+  import Ecto.{Query, Changeset}
 
   alias __MODULE__
+  alias ReleaseAdmin.Repository
 
   schema "users" do
     field(:avatar, :string)
     field(:username, :string)
+
+    has_many(:repos, Repository)
 
     timestamps(type: :utc_datetime)
   end
