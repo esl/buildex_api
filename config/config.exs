@@ -14,14 +14,22 @@ config :release_admin, ReleaseAdminWeb.Endpoint,
   url: [host: "localhost"],
   secret_key_base: "s2uhDrAvgw8B8Ei9YtQ4ftuxodQBPDSEIenJJR8VakidMlAIybhx5J+1o7lvpXla",
   render_errors: [view: ReleaseAdminWeb.ErrorView, accepts: ~w(html json)],
-  pubsub: [name: ReleaseAdmin.PubSub,
-           adapter: Phoenix.PubSub.PG2]
+  pubsub: [name: ReleaseAdmin.PubSub, adapter: Phoenix.PubSub.PG2]
 
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
+config :ueberauth, Ueberauth,
+  providers: [
+    github: {Ueberauth.Strategy.Github, [default_scope: "user,read:org"]}
+  ]
+
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: System.get_env("GITHUB_CLIENT_ID"),
+  client_secret: System.get_env("GITHUB_CLIENT_SECRET")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
+import_config "#{Mix.env()}.exs"
