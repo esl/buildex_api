@@ -1,5 +1,7 @@
 defmodule ReleaseAdminWeb.AuthController do
   use ReleaseAdminWeb, :controller
+  require Logger
+
   plug(Ueberauth)
 
   alias ReleaseAdmin.Auth
@@ -22,15 +24,20 @@ defmodule ReleaseAdminWeb.AuthController do
     |> redirect(to: "/")
   end
 
-  def callback(%{assigns: %{ueberauth_auth: auth}} = conn, _params) do
-    case Auth.find_or_create(auth) do
-      {:ok, user} ->
-        conn
-        |> put_flash(:info, "Successfully authenticated.")
-        |> put_session(:current_user, user)
-        |> redirect(to: "/")
+  def callback(%{assigns: %{ueberauth_auth: u_auth}} = conn, _params) do
+    with {:ok, auth} <- Auth.new(u_auth),
+         {:ok, user} <- Auth.find_or_create(auth) do
+      session = Auth.new_session(auth)
+      IO.inspect(user, label: "USER >>>>>>>>>>>>>>>>>>>>>>>>")
+      IO.inspect(session, label: "SESSION >>>>>>>>>>>>>>>>>>>>>>>>")
 
+      conn
+      |> put_flash(:info, "Successfully authenticated.")
+      |> put_session(:current_user, session)
+      |> redirect(to: "/")
+    else
       {:error, reason} ->
+        Logger.error("auth error reason: #{inspect reason}")
         conn
         |> put_flash(:error, reason)
         |> redirect(to: "/")
