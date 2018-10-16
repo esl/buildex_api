@@ -13,5 +13,7 @@ defmodule ReleaseAdmin.Repo.Migrations.CreateTags do
 
       timestamps(type: :utc_datetime)
     end
+
+    create(unique_index(:tags, [:repository_id, :name]))
   end
 end

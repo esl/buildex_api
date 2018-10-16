@@ -1,6 +1,7 @@
 defmodule ReleaseAdmin.TagTest do
   use ReleaseAdmin.DataCase
   import Ecto.Changeset
+  import ReleaseAdmin.Factory
 
   alias ReleaseAdmin.{Repo, Tag}
 
@@ -30,6 +31,25 @@ defmodule ReleaseAdmin.TagTest do
                |> Repo.insert()
 
       assert %{name: ["can't be blank"]} = errors_on(reason)
+    end
+
+    test "validates uniqueness a tag name within a repo" do
+      repo = insert(:repository)
+      insert(:tag, repository: repo, name: "v1.0.0")
+
+      assert {:error, reason} =
+               %Tag{}
+               |> Tag.changeset(%{
+                 "name" => "v1.0.0",
+                 "repository_id" => repo.id,
+                 "commit" => %{
+                   "sha" => "sha sha sha!!!",
+                   "url" => "http://commit_sha_url"
+                 }
+               })
+               |> Repo.insert()
+
+      assert %{name: ["Tag is already created"]} = errors_on(reason)
     end
   end
 

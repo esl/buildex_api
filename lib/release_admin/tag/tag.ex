@@ -24,6 +24,7 @@ defmodule ReleaseAdmin.Tag do
     |> cast(attrs, [:name, :node_id, :commit, :zipball_url, :tarball_url, :repository_id])
     |> map_commit_info()
     |> validate_required([:name, :commit_sha, :commit_url, :repository_id])
+    |> unique_constraint(:name, name: :tags_repository_id_name_index, message: "Tag is already created")
   end
 
   defp map_commit_info(%{valid?: false} = changeset), do: changeset
