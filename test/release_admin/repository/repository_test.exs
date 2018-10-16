@@ -1,6 +1,5 @@
 defmodule ReleaseAdmin.RepositoryTest do
   use ReleaseAdmin.DataCase
-  import Ecto.Changeset
   import ReleaseAdmin.Factory
 
   alias ReleaseAdmin.{Repo, Repository}
@@ -40,18 +39,5 @@ defmodule ReleaseAdmin.RepositoryTest do
 
       assert %{polling_interval: ["can't be blank"]} = errors_on(reason)
     end
-  end
-
-  test "parses correctly repository url into owner/repo name" do
-    attrs = %{
-      repository_url: "https://github.com/jeremyjh/dialyxir",
-      user_id: 1,
-      polling_interval: 60
-    }
-
-    changeset = Repository.changeset(%Repository{}, attrs)
-
-    assert get_change(changeset, :owner) == "jeremyjh"
-    assert get_change(changeset, :name) == "dialyxir"
   end
 end
