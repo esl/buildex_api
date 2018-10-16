@@ -8,6 +8,7 @@ defmodule ReleaseAdmin.Factory do
     %User{
       # Ids are taken from GitHub's Ids so we aren't autogenerating them
       id: :rand.uniform(1_000_000),
+      email: sequence(:email, &"example-#{&1}@ex.com"),
       username: sequence(:username, &"username-#{&1}")
     }
   end
