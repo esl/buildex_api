@@ -43,7 +43,8 @@ defmodule ReleaseAdmin.Mixfile do
       {:cowboy, "~> 1.0"},
       {:ueberauth, "~> 0.4"},
       {:ueberauth_github, "~> 0.7"},
-      {:ex_machina, "~> 2.2", only: :test}
+      {:ex_machina, "~> 2.2", only: :test},
+      {:tentacat, "~> 1.2.0"}
     ]
   end
 
