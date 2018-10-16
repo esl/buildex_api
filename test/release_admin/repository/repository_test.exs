@@ -20,7 +20,7 @@ defmodule ReleaseAdmin.RepositoryTest do
                |> Repository.changeset(attrs)
                |> Repo.insert()
 
-      assert Keyword.get(reason.errors, :repository_url) == {"has already been taken", []}
+      assert %{repository_url: ["has already been taken"]} = errors_on(reason)
     end
 
     test "validates repository_url is required" do
@@ -29,8 +29,7 @@ defmodule ReleaseAdmin.RepositoryTest do
                |> Repository.changeset(%{})
                |> Repo.insert()
 
-      assert Keyword.get(reason.errors, :repository_url) ==
-               {"can't be blank", [validation: :required]}
+      assert %{repository_url: ["can't be blank"]} = errors_on(reason)
     end
 
     test "validates polling_interval is required" do
@@ -39,8 +38,7 @@ defmodule ReleaseAdmin.RepositoryTest do
                |> Repository.changeset(%{})
                |> Repo.insert()
 
-      assert Keyword.get(reason.errors, :polling_interval) ==
-               {"can't be blank", [validation: :required]}
+      assert %{polling_interval: ["can't be blank"]} = errors_on(reason)
     end
   end
 

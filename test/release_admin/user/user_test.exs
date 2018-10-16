@@ -13,7 +13,7 @@ defmodule ReleaseAdmin.UserTest do
                |> User.changeset(%{username: "kiro", id: :rand.uniform(1_000_000)})
                |> Repo.insert()
 
-      assert Keyword.get(reason.errors, :username) == {"has already been taken", []}
+      assert %{username: ["has already been taken"]} = errors_on(reason)
     end
 
     test "validates username is required" do
@@ -22,7 +22,7 @@ defmodule ReleaseAdmin.UserTest do
                |> User.changeset(%{id: :rand.uniform(1_000_000)})
                |> Repo.insert()
 
-      assert Keyword.get(reason.errors, :username) == {"can't be blank", [validation: :required]}
+      assert %{username: ["can't be blank"]} = errors_on(reason)
     end
 
     test "validates id is required" do
@@ -31,7 +31,7 @@ defmodule ReleaseAdmin.UserTest do
                |> User.changeset(%{username: "kiro"})
                |> Repo.insert()
 
-      assert Keyword.get(reason.errors, :id) == {"can't be blank", [validation: :required]}
+      assert %{id: ["can't be blank"]} = errors_on(reason)
     end
   end
 
