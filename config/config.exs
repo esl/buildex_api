@@ -23,7 +23,7 @@ config :logger, :console,
 
 config :ueberauth, Ueberauth,
   providers: [
-    github: {Ueberauth.Strategy.Github, [default_scope: "user,read:org"]}
+    github: {Ueberauth.Strategy.Github, [default_scope: "read:user, user:email, read:org, repo:status"]}
   ]
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
