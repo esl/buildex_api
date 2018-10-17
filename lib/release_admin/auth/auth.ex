@@ -5,6 +5,7 @@ defmodule ReleaseAdmin.Auth do
   alias __MODULE__
   alias ReleaseAdmin.{User, Repo}
   alias ReleaseAdmin.Auth.Session
+  alias ReleaseAdmin.Services.Github
 
   @type t :: %__MODULE__{
           id: pos_integer(),
@@ -79,9 +80,7 @@ defmodule ReleaseAdmin.Auth do
   defp access_token_from_auth(%{credentials: %{token: access_token}}), do: access_token
 
   defp validate_organization(%{access_token: access_token} = auth) do
-    client = Tentacat.Client.new(%{access_token: access_token})
-
-    case Tentacat.Organizations.list_mine(client) do
+    case Github.get_user_organizations(access_token) do
       {200, orgs, _} ->
         org_names = Enum.map(orgs, & &1["login"])
 
