@@ -5,6 +5,7 @@ defmodule ReleaseAdmin.AuthTest do
 
   alias ReleaseAdmin.{Auth, User}
   alias ReleaseAdmin.Services.Github
+  alias ReleaseAdmin.Auth.Session
 
   setup :verify_on_exit!
 
@@ -135,6 +136,13 @@ defmodule ReleaseAdmin.AuthTest do
                |> Auth.find_or_create()
 
       assert %{username: ["can't be blank"]} = errors_on(reason)
+    end
+  end
+
+  describe "new_session/1" do
+    test "create a new session from the auth struct", %{github_oauth: github_oauth} do
+      {:ok, auth} = Auth.new(github_oauth)
+      assert %Session{username: "kirobyte", email: "test-email@ex.com"} == Auth.new_session(auth)
     end
   end
 end
