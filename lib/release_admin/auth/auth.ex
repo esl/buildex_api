@@ -12,10 +12,10 @@ defmodule ReleaseAdmin.Auth do
           email: String.t(),
           avatar: String.t(),
           access_token: String.t(),
-          organizations: list(String.t())
+          orgs: list(String.t())
         }
 
-  defstruct id: nil, username: nil, email: nil, avatar: nil, access_token: nil, organizations: []
+  defstruct id: nil, username: nil, email: nil, avatar: nil, access_token: nil, orgs: []
 
   @spec new(Ueberauth.Auth.t()) :: {:ok, Auth.t()} | {:error, :invalid_provider}
   def new(%Ueberauth.Auth{provider: :github} = auth) do
@@ -87,7 +87,7 @@ defmodule ReleaseAdmin.Auth do
 
         # TODO: made this configurable
         if Enum.member?(org_names, "esl") do
-          {:ok, %{auth | organizations: org_names}}
+          {:ok, %{auth | orgs: org_names}}
         else
           {:error, :forbidden}
         end

@@ -26,10 +26,8 @@ defmodule ReleaseAdminWeb.AuthController do
 
   def callback(%{assigns: %{ueberauth_auth: u_auth}} = conn, _params) do
     with {:ok, auth} <- Auth.new(u_auth),
-         {:ok, user} <- Auth.find_or_create(auth) do
+         {:ok, _user} <- Auth.find_or_create(auth) do
       session = Auth.new_session(auth)
-      IO.inspect(user, label: "USER >>>>>>>>>>>>>>>>>>>>>>>>")
-      IO.inspect(session, label: "SESSION >>>>>>>>>>>>>>>>>>>>>>>>")
 
       conn
       |> put_flash(:info, "Successfully authenticated.")

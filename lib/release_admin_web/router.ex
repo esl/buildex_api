@@ -7,6 +7,7 @@ defmodule ReleaseAdminWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
+    plug(ReleaseAdminWeb.Plugs.UserSession)
   end
 
   pipeline :api do
