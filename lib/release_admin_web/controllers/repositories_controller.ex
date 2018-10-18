@@ -31,7 +31,9 @@ defmodule ReleaseAdminWeb.RepositoriesController do
         |> redirect(to: repositories_path(conn, :show, repository))
 
       {:error, reason} ->
-        render(conn, "new.html", changeset: reason)
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render("new.html", changeset: reason)
     end
   end
 
@@ -67,7 +69,9 @@ defmodule ReleaseAdminWeb.RepositoriesController do
         |> redirect(to: repositories_path(conn, :show, repository))
 
       {:error, reason} ->
-        render(conn, "edit.html", repo: reason.data, changeset: reason)
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render("edit.html", repo: reason.data, changeset: reason)
     end
   end
 end
