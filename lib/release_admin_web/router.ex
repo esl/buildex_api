@@ -14,6 +14,16 @@ defmodule ReleaseAdminWeb.Router do
     plug(:accepts, ["json"])
   end
 
+  pipeline :browser_auth do
+    plug(:accepts, ["html"])
+    plug(:fetch_session)
+    plug(:fetch_flash)
+    plug(:protect_from_forgery)
+    plug(:put_secure_browser_headers)
+    plug(ReleaseAdminWeb.Plugs.Authenticate)
+    plug(ReleaseAdminWeb.Plugs.UserSession)
+  end
+
   scope "/", ReleaseAdminWeb do
     # Use the default browser stack
     pipe_through(:browser)
