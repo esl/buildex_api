@@ -22,4 +22,10 @@ defmodule ReleaseAdmin.Repository do
     |> validate_required([:repository_url, :polling_interval, :user_id])
     |> unique_constraint(:repository_url)
   end
+
+  def update_changeset(repo, attrs) do
+    repo
+    |> cast(attrs, [:polling_interval, :github_token])
+    |> validate_required([:polling_interval])
+  end
 end

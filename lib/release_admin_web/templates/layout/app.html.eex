@@ -19,9 +19,9 @@
             <li>
              <div class="btn-group">
               <%= if assigns[:current_user] == nil do  %>
-                <%= link "Login", to: auth_path(@conn, :request, "github"), class: "btn btn-primary btn" %>
+                <%= link "Login", to: auth_path(@conn, :request, "github"), class: "btn btn-primary" %>
               <% else %>
-                 <%= link "Logout #{@current_user.username}", to: auth_path(@conn, :delete), method: :delete, class: "btn btn-primary btn" %>
+                 <%= link "Logout #{@current_user.username}", to: auth_path(@conn, :delete), method: :delete, class: "btn btn-primary" %>
               <% end %>
               </div>
             </li>

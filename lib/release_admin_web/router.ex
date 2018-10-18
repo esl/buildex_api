@@ -31,6 +31,11 @@ defmodule ReleaseAdminWeb.Router do
     get("/", PageController, :index)
   end
 
+  scope "/", ReleaseAdminWeb do
+    pipe_through(:browser_auth)
+    resources("/repos", RepositoriesController)
+  end
+
   scope "/auth", ReleaseAdminWeb do
     pipe_through(:browser)
     get("/:provider", AuthController, :request)
