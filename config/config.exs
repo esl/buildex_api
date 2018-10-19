@@ -7,7 +7,8 @@ use Mix.Config
 
 # General application configuration
 config :release_admin,
-  ecto_repos: [ReleaseAdmin.Repo]
+  ecto_repos: [ReleaseAdmin.Repo],
+  runtime_config: ReleaseAdmin.LiveConfig
 
 # Configures the endpoint
 config :release_admin, ReleaseAdminWeb.Endpoint,

@@ -1,7 +1,7 @@
 defmodule ReleaseAdmin.Factory do
   use ExMachina.Ecto, repo: ReleaseAdmin.Repo
 
-  alias ReleaseAdmin.{Repository, User, Tag}
+  alias ReleaseAdmin.{Repository, User, Tag, Task}
 
   @spec user_factory() :: User.t()
   def user_factory do
@@ -30,5 +30,18 @@ defmodule ReleaseAdmin.Factory do
       commit_url: "https://github.com/commit_sha",
       repository: build(:repository)
     }
+  end
+
+  @spec task_factory() :: Task.t()
+  def task_factory() do
+    %Tag{repository: build(:repository)}
+  end
+
+  def docker_task(task) do
+    %{task | runner: "docker_build"}
+  end
+
+  def make_task(task) do
+    %{task | runner: "make"}
   end
 end

@@ -12,6 +12,7 @@ defmodule ReleaseAdmin.Application do
       supervisor(ReleaseAdmin.Repo, []),
       # Start the endpoint when the application starts
       supervisor(ReleaseAdminWeb.Endpoint, []),
+      ReleaseAdmin.Encryption.Vault
       # Start your own worker by calling: ReleaseAdmin.Worker.start_link(arg1, arg2, arg3)
       # worker(ReleaseAdmin.Worker, [arg1, arg2, arg3]),
     ]

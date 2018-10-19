@@ -6,6 +6,9 @@ config :release_admin, ReleaseAdminWeb.Endpoint,
   http: [port: 4001],
   server: false
 
+config :release_admin,
+  runtime_config: ReleaseAdmin.TestConfig
+
 # Print only warnings and errors during test
 config :logger, level: :warn
 
