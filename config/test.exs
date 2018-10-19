@@ -17,3 +17,7 @@ config :release_admin, ReleaseAdmin.Repo,
   database: "release_admin_test",
   hostname: "localhost",
   pool: Ecto.Adapters.SQL.Sandbox
+
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: "DUMMY_CLIENT_ID",
+  client_secret: "DUMMY_CLIENT_SECRET"

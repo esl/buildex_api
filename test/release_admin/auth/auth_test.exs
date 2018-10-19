@@ -7,55 +7,12 @@ defmodule ReleaseAdmin.AuthTest do
   alias ReleaseAdmin.Services.Github
   alias ReleaseAdmin.Auth.Session
 
+  alias ReleaseAdminWeb.StubsGeneration
+
   setup :verify_on_exit!
 
   setup do
-    git_id = :rand.uniform(1_000_000)
-
-    github_oauth = %Ueberauth.Auth{
-      credentials: %Ueberauth.Auth.Credentials{
-        token: "verylargelargetoken",
-        token_type: "Bearer"
-      },
-      extra: %Ueberauth.Auth.Extra{
-        raw_info: %{
-          token: %OAuth2.AccessToken{
-            access_token: "verylargelargetoken",
-            token_type: "Bearer"
-          },
-          user: %{
-            "id" => git_id,
-            "avatar_url" => "https://avatars0.githubusercontent.com/u/#{git_id}?v=4",
-            "emails" => [
-              %{
-                "email" => "test-email@ex.com",
-                "primary" => true,
-                "verified" => true,
-                "visibility" => "public"
-              }
-            ],
-            "type" => "User",
-            "name" => "Kiro",
-            "email" => "test-email@ex.com",
-            "login" => "kirobyte"
-          }
-        }
-      },
-      info: %Ueberauth.Auth.Info{
-        email: "test-email@ex.com",
-        image: "https://avatars0.githubusercontent.com/u/#{git_id}?v=4",
-        location: "Medellin",
-        name: "Kiro",
-        nickname: "kirobyte",
-        urls: %{
-          avatar_url: "https://avatars0.githubusercontent.com/u/#{git_id}?v=4"
-        }
-      },
-      provider: :github,
-      uid: git_id
-    }
-
-    {:ok, github_oauth: github_oauth}
+    {:ok, github_oauth: StubsGeneration.generate_github_auth_response()}
   end
 
   describe "new/1" do
