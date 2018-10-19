@@ -10,10 +10,29 @@ defmodule ReleaseAdmin.UserTest do
 
       assert {:error, reason} =
                User.new()
-               |> User.changeset(%{username: "kiro", id: :rand.uniform(1_000_000)})
+               |> User.changeset(%{
+                 username: "kiro",
+                 email: "test@ex.com",
+                 id: :rand.uniform(1_000_000)
+               })
                |> Repo.insert()
 
       assert %{username: ["has already been taken"]} = errors_on(reason)
+    end
+
+    test "validates uniqueness of email" do
+      insert(:user, email: "kiro@ex.com")
+
+      assert {:error, reason} =
+               User.new()
+               |> User.changeset(%{
+                 username: "test",
+                 email: "kiro@ex.com",
+                 id: :rand.uniform(1_000_000)
+               })
+               |> Repo.insert()
+
+      assert %{email: ["has already been taken"]} = errors_on(reason)
     end
 
     test "validates username is required" do
@@ -33,6 +52,15 @@ defmodule ReleaseAdmin.UserTest do
 
       assert %{id: ["can't be blank"]} = errors_on(reason)
     end
+
+    test "validates email is required" do
+      assert {:error, reason} =
+               User.new()
+               |> User.changeset(%{username: "kiro"})
+               |> Repo.insert()
+
+      assert %{email: ["can't be blank"]} = errors_on(reason)
+    end
   end
 
   describe "queries" do
@@ -47,6 +75,12 @@ defmodule ReleaseAdmin.UserTest do
     test "won't find anything by username" do
       refute User.by_username("pluto")
              |> Repo.one()
+    end
+  end
+
+  describe "defaults" do
+    test "user's organizations is default to and empty list" do
+      assert %{orgs: []} = User.new()
     end
   end
 end
