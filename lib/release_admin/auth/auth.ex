@@ -20,21 +20,14 @@ defmodule ReleaseAdmin.Auth do
 
   @spec new(Ueberauth.Auth.t()) :: {:ok, Auth.t()} | {:error, :invalid_provider}
   def new(%Ueberauth.Auth{provider: :github} = auth) do
-    primary_email =
-      emails_from_auth(auth)
-      |> Enum.find(& &1["primary"])
-      |> (fn
-            nil -> nil
-            auth_email -> auth_email["email"]
-          end).()
-
+    email = email_from_auth(auth)
     access_token = access_token_from_auth(auth)
 
     {:ok,
      %Auth{
        id: auth.uid,
        username: username_from_auth(auth),
-       email: primary_email,
+       email: email,
        avatar: avatar_from_auth(auth),
        access_token: access_token
      }}
@@ -73,13 +66,15 @@ defmodule ReleaseAdmin.Auth do
 
   defp avatar_from_auth(%{info: %{urls: %{avatar_url: image}}}), do: image
 
-  defp username_from_auth(%{extra: %{raw_info: %{user: %{"login" => username}}}}), do: username
+  defp username_from_auth(%Ueberauth.Auth{info: %Ueberauth.Auth.Info{nickname: username}}),
+    do: username
 
-  defp emails_from_auth(%{extra: %{raw_info: %{user: %{"emails" => emails}}}}), do: emails
+  defp email_from_auth(%Ueberauth.Auth{info: %Ueberauth.Auth.Info{email: email}}), do: email
 
-  defp access_token_from_auth(%{credentials: %{token: access_token}}), do: access_token
+  defp access_token_from_auth(%Ueberauth.Auth{credentials: %{token: access_token}}),
+    do: access_token
 
-  defp validate_organization(%{access_token: access_token} = auth) do
+  defp validate_organization(%Auth{access_token: access_token} = auth) do
     case Github.get_user_organizations(access_token) do
       {200, orgs, _} ->
         org_names = Enum.map(orgs, & &1["login"])
