@@ -8,12 +8,12 @@ defmodule ReleaseAdminWeb.TaskController do
 
   plug(:load_repository when action in [:index, :new, :create])
 
-
   @spec index(Conn.t(), map()) :: Conn.t()
   def index(conn, _params) do
     tasks =
       conn.assigns[:repository]
       |> TaskService.repo_tasks()
+
     render(conn, "index.html", tasks: tasks)
   end
 
