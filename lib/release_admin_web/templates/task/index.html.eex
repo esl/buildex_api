@@ -1,0 +1,18 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Runner</th>
+      <th>Fetch Url</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= for task <- @tasks do %>
+      <tr>
+        <td><%= link task.id, to: repositories_task_path(@conn, :edit, task.repository_id, task) %></td>
+        <td><%= task.runner %></td>
+        <td><%= task.fetch_url %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -77,4 +77,37 @@ defmodule ReleaseAdmin.TaskTest do
       assert EncryptedBinary.load(result) == {:ok, "verylongsshkey"}
     end
   end
+
+  describe "build file content" do
+    setup do
+      content = "This Is A Test"
+      build_file = Path.join([System.cwd!(), "test", "fixtures", "buildfile_test"])
+      File.write!(build_file, content)
+
+      on_exit(fn ->
+        File.rm!(build_file)
+      end)
+
+      {:ok, path: build_file}
+    end
+
+    test "extracts build file content on insert", %{path: path} do
+      repo = insert(:repository)
+
+      attrs = %{
+        repository_id: repo.id,
+        runner: "docker_build",
+        build_file: %{path: path}
+      }
+
+      changeset = Task.changeset(%Task{}, attrs)
+      assert %{changes: %{build_file_content: "This Is A Test"}} = changeset
+    end
+
+    test "extracts build file content on update", %{path: path} do
+      attrs = %{build_file: %{path: path}}
+      changeset = Task.update_changeset(%Task{}, attrs)
+      assert %{changes: %{build_file_content: "This Is A Test"}} = changeset
+    end
+  end
 end

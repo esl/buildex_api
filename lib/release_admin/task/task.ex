@@ -8,6 +8,8 @@ defmodule ReleaseAdmin.Task do
 
   schema "tasks" do
     field(:commands, {:array, :string}, default: [])
+    # Plug.Upload
+    field(:build_file, :any, virtual: true)
     field(:build_file_content, :string)
     field(:env, :map, default: %{})
     field(:fetch_url, :string)
@@ -29,14 +31,24 @@ defmodule ReleaseAdmin.Task do
       :runner,
       :source,
       :env,
+      :build_file,
       :build_file_content,
       :commands,
       :repository_id
     ])
     |> validate_required([:repository_id, :runner])
     |> validate_inclusion(:runner, ["make", "docker_build"])
+    |> maybe_extract_build_file()
     |> maybe_validate_build_file_content()
     |> maybe_validate_source()
+    |> foreign_key_constraint(:repository_id)
+  end
+
+  def update_changeset(task, attrs) do
+    task
+    |> cast(attrs, [:fetch_url, :ssh_key, :env, :build_file, :build_file_content, :commands])
+    |> maybe_extract_build_file()
+    |> maybe_validate_build_file_content()
   end
 
   @spec maybe_validate_build_file_content(Changeset.t()) :: Changeset.t()
@@ -56,4 +68,13 @@ defmodule ReleaseAdmin.Task do
   end
 
   defp maybe_validate_source(changeset), do: changeset
+
+  defp maybe_extract_build_file(%{valid?: false} = changeset), do: changeset
+
+  defp maybe_extract_build_file(%{changes: %{build_file: upload}} = changeset) do
+    content = File.read!(upload.path)
+    put_change(changeset, :build_file_content, content)
+  end
+
+  defp maybe_extract_build_file(changeset), do: changeset
 end

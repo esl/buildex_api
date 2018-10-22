@@ -33,7 +33,9 @@ defmodule ReleaseAdminWeb.Router do
 
   scope "/", ReleaseAdminWeb do
     pipe_through(:browser_auth)
-    resources("/repos", RepositoriesController)
+    resources("/repos", RepositoriesController) do
+      resources("/tasks", TaskController)
+    end
   end
 
   scope "/auth", ReleaseAdminWeb do
