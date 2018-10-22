@@ -2,7 +2,6 @@ defmodule ReleaseAdminWeb.TaskControllerTest do
   use ReleaseAdminWeb.ConnCase
   import ReleaseAdmin.Factory
 
-  alias ReleaseAdmin.Repo
   alias ReleaseAdmin.Auth.Session
 
   setup %{conn: conn} do
