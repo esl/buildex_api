@@ -15,6 +15,7 @@ defmodule ReleaseAdmin.Task do
     field(:fetch_url, :string)
     field(:runner, :string)
     field(:source, :string)
+    field(:path, :string, virtual: true)
     field(:ssh_key, EncryptedBinary)
 
     belongs_to(:repository, Repository)

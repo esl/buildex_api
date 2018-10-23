@@ -36,6 +36,7 @@ defmodule ReleaseAdminWeb.Router do
 
     resources("/repos", RepositoriesController) do
       resources("/tasks", TaskController)
+      resources("/poller", PollerController, only: [:create, :delete])
     end
   end
 
