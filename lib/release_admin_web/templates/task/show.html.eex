@@ -9,6 +9,9 @@
       <% else %>
         <th>Buildfile Content</th>
       <% end %>
+      <%= unless Enum.empty?(@task.env) do %>
+        <th>Env</th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -20,6 +23,13 @@
         <td><%= @task.source %></td>
       <% else %>
         <td><p style="white-space: pre-wrap;"><%= @task.build_file_content %></p></td>
+      <% end %>
+      <%= unless Enum.empty?(@task.env) do %>
+        <td>
+          <%= for {env_name, env_value} <- @task.env do %>
+            <%= env_name %> = <%= env_value %> <br/>
+          <% end %>
+        </td>
       <% end %>
     </tr>
   </tbody>
