@@ -4,6 +4,8 @@ defmodule ReleaseAdmin.Repository do
 
   alias ReleaseAdmin.{User, Tag, Task}
 
+  @derive {Poison.Encoder, only: [:id, :github_token, :polling_interval, :repository_url]}
+
   schema "repos" do
     field(:github_token, :string)
     field(:polling_interval, :integer)

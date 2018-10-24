@@ -18,3 +18,7 @@ Ready to run in production? Please [check our deployment guides](http://www.phoe
   * Docs: https://hexdocs.pm/phoenix
   * Mailing list: http://groups.google.com/group/phoenix-talk
   * Source: https://github.com/phoenixframework/phoenix
+
+## Start with --name
+`iex --name admin@127.0.0.1 --cookie hola -S mix phx.server`
+`iex --name poller@127.0.0.1 --cookie hola -S mix`
