@@ -19,8 +19,12 @@ defmodule ReleaseAdminWeb.PollerController do
         conn
         |> put_flash(:info, "Polling repository successfully.")
         |> redirect(to: repositories_path(conn, :show, repository))
+
       {:error, reason} ->
-        Logger.error("failed to start polling #{repository.repository_url} reason #{inspect reason}")
+        Logger.error(
+          "failed to start polling #{repository.repository_url} reason #{inspect(reason)}"
+        )
+
         conn
         |> put_flash(:info, "Error starting polling job.")
         |> put_view(ReleaseAdminWeb.RepositoriesView)
@@ -35,12 +39,16 @@ defmodule ReleaseAdminWeb.PollerController do
     repository
     |> ReleasePoller.stop_polling_repo()
     |> case do
-      {:ok, _} ->
+      :ok ->
         conn
         |> put_flash(:info, "Polling repository successfully stopped.")
         |> redirect(to: repositories_path(conn, :show, repository))
+
       {:error, reason} ->
-        Logger.error("failed to stop polling #{repository.repository_url} reason #{inspect reason}")
+        Logger.error(
+          "failed to stop polling #{repository.repository_url} reason #{inspect(reason)}"
+        )
+
         conn
         |> put_flash(:info, "Error stopping poll job.")
         |> redirect(to: repositories_path(conn, :show, repository))

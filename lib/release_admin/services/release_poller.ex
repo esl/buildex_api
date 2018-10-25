@@ -23,16 +23,14 @@ defmodule ReleaseAdmin.Services.ReleasePoller do
     end
   end
 
-  @spec stop_polling_repo(Repository.t()) :: {:error, any()} | {:ok, any()}
-  def stop_polling_repo(repo) do
-    json_repo = Poison.encode!(repo)
-
-    case :rpc.call(:"poller@127.0.0.1", RepoPoller.PollerSupervisor, :stop_child, [json_repo]) do
+  @spec stop_polling_repo(Repository.t()) :: {:error, any()} | :ok
+  def stop_polling_repo(%{repository_url: repository_url}) do
+    case :rpc.call(:"poller@127.0.0.1", RepoPoller.PollerSupervisor, :stop_child, [repository_url]) do
       {:badrpc, reason} ->
         {:error, reason}
 
-      {:ok, _pid} = res ->
-        res
+      :ok ->
+        :ok
 
       {:error, _} = error ->
         error
