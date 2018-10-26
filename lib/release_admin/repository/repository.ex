@@ -4,10 +4,13 @@ defmodule ReleaseAdmin.Repository do
 
   alias ReleaseAdmin.{User, Tag, Task}
 
+  @adapters ["github"]
+
   schema "repos" do
     field(:github_token, :string)
     field(:polling_interval, :integer)
     field(:repository_url, :string)
+    field(:adapter, :string, default: "github")
 
     has_many(:tags, Tag)
     has_many(:tasks, Task)
@@ -19,8 +22,9 @@ defmodule ReleaseAdmin.Repository do
   @doc false
   def changeset(repo, attrs) do
     repo
-    |> cast(attrs, [:repository_url, :polling_interval, :github_token, :user_id])
+    |> cast(attrs, [:repository_url, :polling_interval, :github_token, :user_id, :adapter])
     |> validate_required([:repository_url, :polling_interval, :user_id])
+    |> validate_inclusion(:adapter, @adapters)
     |> unique_constraint(:repository_url)
   end
 

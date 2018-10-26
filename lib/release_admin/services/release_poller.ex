@@ -3,12 +3,16 @@ defmodule ReleaseAdmin.Services.ReleasePoller do
 
   @spec start_polling_repo(Repository.t()) :: {:error, any()} | {:ok, any()}
   def start_polling_repo(repo) do
-    repo_payload = Map.take(repo, [:id, :github_token, :polling_interval, :repository_url])
+    repo_payload =
+      Map.take(repo, [
+        :id,
+        :github_token,
+        :polling_interval,
+        :repository_url,
+        :adapter
+      ])
 
-    case :rpc.call(:"poller@127.0.0.1", RepoPoller.PollerSupervisor, :start_child, [
-           repo_payload,
-           "github"
-         ]) do
+    case :rpc.call(:"poller@127.0.0.1", RepoPoller.PollerSupervisor, :start_child, [repo_payload]) do
       {:badrpc, reason} ->
         {:error, reason}
 
