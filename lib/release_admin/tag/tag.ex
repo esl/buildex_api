@@ -32,9 +32,13 @@ defmodule ReleaseAdmin.Tag do
 
   defp map_commit_info(%{valid?: false} = changeset), do: changeset
 
-  defp map_commit_info(%{changes: %{commit: commit}} = changeset) do
-    %{sha: sha, url: url} = commit
+  defp map_commit_info(%{changes: %{commit: %{sha: sha, url: url}}} = changeset) do
+    changeset
+    |> put_change(:commit_sha, sha)
+    |> put_change(:commit_url, url)
+  end
 
+  defp map_commit_info(%{changes: %{commit: %{"sha" => sha, "url" => url}}} = changeset) do
     changeset
     |> put_change(:commit_sha, sha)
     |> put_change(:commit_url, url)
