@@ -1,10 +1,16 @@
 defmodule ReleaseAdmin.Task.Service do
   alias ReleaseAdmin.{Repo, Repository, Task}
 
-  @spec repo_tasks(Repository.t()) :: list(Task.t())
-  def repo_tasks(repo) do
+  @spec repo_tasks(Repository.t() | String.t()) :: list(Task.t())
+  def repo_tasks(%Repository{} = repo) do
     repo = Repo.preload(repo, :tasks)
     repo.tasks
+  end
+
+  def repo_tasks(repository_url) when is_binary(repository_url) do
+    Repository
+    |> Repo.get_by!(repository_url: repository_url)
+    |> repo_tasks()
   end
 
   @spec get_task!(String.t() | non_neg_integer()) :: Task.t()
