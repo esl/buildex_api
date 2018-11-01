@@ -39,5 +39,14 @@ defmodule ReleaseAdmin.RepositoryTest do
 
       assert %{polling_interval: ["can't be blank"]} = errors_on(reason)
     end
+
+    test "validates adapter is must be supported" do
+      assert {:error, reason} =
+               %Repository{}
+               |> Repository.changeset(%{adapter: "gitlab"})
+               |> Repo.insert()
+
+      assert %{adapter: ["is invalid"]} = errors_on(reason)
+    end
   end
 end
