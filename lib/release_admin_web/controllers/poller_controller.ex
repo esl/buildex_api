@@ -27,8 +27,7 @@ defmodule ReleaseAdminWeb.PollerController do
 
         conn
         |> put_flash(:info, "Error starting polling job.")
-        |> put_view(ReleaseAdminWeb.RepositoriesView)
-        |> render("show.html", repo: repository)
+        |> redirect(to: repositories_path(conn, :show, repository))
     end
   end
 
