@@ -2,7 +2,7 @@ defmodule ReleaseAdmin.Repository do
   use Ecto.Schema
   import Ecto.Changeset
 
-  alias ReleaseAdmin.{User, Tag}
+  alias ReleaseAdmin.{User, Tag, Task}
 
   schema "repos" do
     field(:github_token, :string)
@@ -10,6 +10,7 @@ defmodule ReleaseAdmin.Repository do
     field(:repository_url, :string)
 
     has_many(:tags, Tag)
+    has_many(:tasks, Task)
     belongs_to(:user, User)
 
     timestamps(type: :utc_datetime)

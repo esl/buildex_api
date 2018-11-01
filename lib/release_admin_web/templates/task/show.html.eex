@@ -1,0 +1,39 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Runner</th>
+      <%= if @task.runner == "make" do %>
+        <th>Commands</th>
+        <th>Fetch Url</th>
+        <th>Source</th>
+      <% else %>
+        <th>Buildfile Content</th>
+      <% end %>
+      <%= unless Enum.empty?(@task.env) do %>
+        <th>Env</th>
+      <% end %>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @task.runner %></td>
+      <%= if @task.runner == "make" do %>
+        <td><%= @task.commands %></td>
+        <td><%= @task.fetch_url %></td>
+        <td><%= @task.source %></td>
+      <% else %>
+        <td><p style="white-space: pre-wrap;"><%= @task.build_file_content %></p></td>
+      <% end %>
+      <%= unless Enum.empty?(@task.env) do %>
+        <td>
+          <%= for {env_name, env_value} <- @task.env do %>
+            <%= env_name %> = <%= env_value %> <br/>
+          <% end %>
+        </td>
+      <% end %>
+    </tr>
+  </tbody>
+</table>
+
+<span><%= link "Edit", to: repositories_task_path(@conn, :edit, @task.repository_id, @task) %></span>
+<span><%= link "Back", to: repositories_path(@conn, :show, @task.repository_id) %></span>

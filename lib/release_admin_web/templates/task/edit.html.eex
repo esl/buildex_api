@@ -1,0 +1,55 @@
+<h2>Edit Task</h2>
+
+<%= if @changeset.action do %>
+  <div class="alert alert-danger">
+    <p>Oops, something went wrong! Please check the errors below.</p>
+  </div>
+<% end %>
+
+<%= form_for @changeset, repositories_task_path(@conn, :update, @task.repository_id, @task), [multipart: true], fn f -> %>
+  <div class="form-group">
+    <%= label f, :ssh_key, class: "control-label" %>
+    <%= textarea f, :ssh_key, class: "form-control" %>
+    <%= error_tag f, :ssh_key %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :fetch_url, class: "control-label" %>
+    <%= text_input f, :fetch_url, class: "form-control" %>
+    <%= error_tag f, :fetch_url %>
+  </div>
+
+  <div class="form-group" data-commands-group>
+    <%= label f, :commands, class: "control-label" %>
+
+    <%= for command <- @task.commands do %>
+      <%= text_input f, :commands, value: command, name: "task[commands][]", class: "form-control", id: nil %>
+    <% end %>
+  </div>
+
+  <div class="form-group">
+    <button id="add-command"> + Add Command </button>
+  </div>
+
+  <div class="form-group" data-env-group>
+    <%# LEAVE EMPTY - CONTAINS ENV VARS %>
+  </div>
+
+  <div class="form-group">
+    <label for="new-env"  class="control-label">New Env</label>
+    <input type="text" name="new-env" class="form-control">
+    <button id="add-env"> + Add Env </button>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :build_file, class: "control-label" %>
+    <%= file_input f, :build_file, class: "form-control" %>
+    <%= error_tag f, :build_file_content %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Submit", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<span><%= link "Back", to: repositories_task_path(@conn, :show, @task.repository_id, @task) %></span>

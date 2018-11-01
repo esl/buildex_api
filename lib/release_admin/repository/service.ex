@@ -6,7 +6,7 @@ defmodule ReleaseAdmin.Repository.Service do
     Repo.all(Repository)
   end
 
-  @spec get!(non_neg_integer()) :: Repository.t() | no_return()
+  @spec get!(non_neg_integer() | String.t()) :: Repository.t() | no_return()
   def get!(id) do
     Repo.get!(Repository, id)
   end
@@ -18,7 +18,7 @@ defmodule ReleaseAdmin.Repository.Service do
     |> Repo.insert()
   end
 
-  @spec update(non_neg_integer(), map()) ::
+  @spec update(non_neg_integer() | String.t(), map()) ::
           {:ok, Repository.t()} | {:error, Ecto.Changeset.t()} | no_return()
   def update(id, attrs) do
     id
@@ -27,7 +27,7 @@ defmodule ReleaseAdmin.Repository.Service do
     |> Repo.update()
   end
 
-  @spec delete!(non_neg_integer()) :: Repository.t() | no_return()
+  @spec delete!(non_neg_integer() | String.t()) :: Repository.t() | no_return()
   def delete!(id) do
     id
     |> get!()

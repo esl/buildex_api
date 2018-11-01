@@ -15,6 +15,8 @@
   </tbody>
 </table>
 
+<%= link "Add Task", to: repositories_task_path(@conn, :new, @repo.id), class: "btn btn-primary" %>
+<%= link "All Tasks", to: repositories_task_path(@conn, :index, @repo.id), class: "btn btn-primary" %>
 <%= link "New Repo", to: repositories_path(@conn, :new), class: "btn btn-primary" %>
 <%= link "All Repos", to: repositories_path(@conn, :index), class: "btn btn-primary" %>
 <%= link "Edit", to: repositories_path(@conn, :edit, @repo), class: "btn btn-primary" %>

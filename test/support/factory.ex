@@ -34,7 +34,7 @@ defmodule ReleaseAdmin.Factory do
 
   @spec task_factory() :: Task.t()
   def task_factory() do
-    %Tag{repository: build(:repository)}
+    %Task{repository: build(:repository)}
   end
 
   def docker_task(task) do
