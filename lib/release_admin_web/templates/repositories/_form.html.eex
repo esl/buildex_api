@@ -1,0 +1,25 @@
+<%= if @changeset.action do %>
+  <div class="alert alert-danger">
+    <p>Oops, something went wrong! Please check the errors below.</p>
+  </div>
+<% end %>
+
+<%= form_for @changeset, repositories_path(@conn, :create), fn f -> %>
+  <div class="form-group">
+    <label for="repository_url">Repository Url</label>
+    <%= text_input f, :repository_url, class: "form-control", id: "repository_url"%>
+    <%= error_tag f, :repository_url %>
+  </div>
+
+  <div class="form-group">
+    <label for="github_token">Github Token</label>
+    <%= text_input f, :github_token, class: "form-control", id: "github_token"%>
+  </div>
+
+  <div class="form-group">
+    <label for="polling_interval">Polling Interval (seconds)</label>
+    <%= number_input f, :polling_interval, class: "form-control", id: "polling_interval"%>
+    <%= error_tag f, :polling_interval %>
+  </div>
+  <%= submit "Submit", class: "btn btn-default" %>
+<% end %>

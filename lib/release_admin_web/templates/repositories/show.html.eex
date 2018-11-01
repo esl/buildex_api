@@ -1,0 +1,21 @@
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Url</th>
+      <th>Polling Interval</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><%= @repo.id %></td>
+      <td><%= @repo.repository_url %></td>
+      <td><%= @repo.polling_interval %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link "New Repo", to: repositories_path(@conn, :new), class: "btn btn-primary" %>
+<%= link "All Repos", to: repositories_path(@conn, :index), class: "btn btn-primary" %>
+<%= link "Edit", to: repositories_path(@conn, :edit, @repo), class: "btn btn-primary" %>
+<%= link "Delete", to: repositories_path(@conn, :delete, @repo), method: :delete, class: "btn btn-danger" %>
