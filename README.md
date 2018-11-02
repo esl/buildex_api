@@ -1,6 +1,6 @@
 # ReleaseAdmin
 
-# Development pre-requisites
+# Development prerequisites
 
 * Postgres running locally with a user/password of 'postgres'/'postgres' e.g. using docker : `docker run --name postgres -v pgdata:/var/lib/postgresql/data  -p 5432:5432 -d postgres --password -e POSTGRES_PASSWORD=postgres`
 
