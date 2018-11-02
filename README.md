@@ -1,33 +1,38 @@
 # ReleaseAdmin
 
+# Development pre-requisites
+
+* Postgres running locally with a user/password of 'postgres'/'postgres' e.g. using docker : `docker run --name postgres -v pgdata:/var/lib/postgresql/data  -p 5432:5432 -d postgres --password -e POSTGRES_PASSWORD=postgres`
+
+* Elixir 1.7 
 
 ## Running the application 
 
-(Optional) - you might want to read the Github guides to [creating an oauth application](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/), and [authorizing oauth applications](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/).
+Before you start, you might want to quickly read over the Github guides to [creating an oauth application](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/), and [authorizing oauth applications](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/).
 
-To summarise - you will need to create a new OAuth application on Github and provide it's `CLIENT_ID` and `CLIENT_SECRET` values to the release_admin application via environment variables.
+You will need to create a new OAuth application on Github and provide it's `CLIENT_ID` and `CLIENT_SECRET` values to the release_admin application.
 
-The steps involved are as follows - 
+The steps involved are as follows : 
 
-1. Create a new github application via the following [url](https://github.com/settings/applications/new)
+1. Create a new github application via the [github.com/settings/applications/new](https://github.com/settings/applications/new)
 
-2. For testing purposes we've chosen the values displayed in this image : 
+2. For testing purposes we've chosen the following values, the only important value is the callback url, which is where OAuth requests will be redirected to: 
 
 ![Image of Github OAuth setup](docs/github-setup-for-ueberauth.png)
 
-Having created the application, you will be given the opportunity to copy the GITHUB_CLIENT_ID, and GITHUB_CLIENT_SECRET - Github offers the option to regenerate the secret later if need be. In any event, copy them somewhere *secure*.
+Having created the application, you will be given the opportunity to copy the GITHUB_CLIENT_ID, and GITHUB_CLIENT_SECRET - Github offers the option to regenerate the secret later if need be.
 
-3. Set the appropriate environmnental variables in the environment where you will be running the 'release_admin' application: 
+3. Export these environmnental variables into the environment in which you will run the 'release_admin' application: 
 
 ```
 export RELEASE_ADMIN_GITHUB_CLIENT_ID=<GITHUB_CLIENT_ID>
 export RELEASE_ADMIN_GITHUB_CLIENT_SECRET=<GITHUB_CLIENT_SECRET>
 ```
 
-4. Start the Phoenix web server :  
+4. Bootstrap the database, fetch Javascript dependencies, and start the Phoenix web server :  
 
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
+  * Install Elixir dependencies with `mix deps.get`
+  * Create and migrate the database with `mix ecto.create && mix ecto.migrate`
   * Install Node.js dependencies with `cd assets && npm install`
   * Start Phoenix endpoint with `mix phx.server`
 
