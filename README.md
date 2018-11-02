@@ -20,8 +20,8 @@ Having created the application, you will be given the opportunity to copy the GI
 3. Set the appropriate environmnental variables in the environment where you will be running the 'release_admin' application: 
 
 ```
-export POC_UBERAUTH_GITHUB_CLIENT_ID=<GITHUB_CLIENT_ID>
-export POC_UBERAUTH_GITHUB_CLIENT_SECRET=<GITHUB_CLIENT_SECRET>
+export RELEASE_ADMIN_GITHUB_CLIENT_ID=<GITHUB_CLIENT_ID>
+export RELEASE_ADMIN_GITHUB_CLIENT_SECRET=<GITHUB_CLIENT_SECRET>
 ```
 
 4. Start the Phoenix web server :  
@@ -39,13 +39,3 @@ This application will ask for the [following](https://github.com/sescobb27/relea
 2. user:email, 
 3. read:org
 4. repo:status
-
-To start your Phoenix server:
-
-  * Install dependencies with `mix deps.get`
-  * Create and migrate your database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
