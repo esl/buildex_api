@@ -1,9 +1,19 @@
 defmodule ReleaseAdmin.RuntimeConfig do
+  alias ReleaseAdmin.Services.RPC
+
   @callback _db_secret_key() :: String.t()
 
   def db_secret_key do
     mod = Application.get_env(:release_admin, :runtime_config)
     mod._db_secret_key()
+  end
+
+  def get_poller_domain do
+    Application.get_env(:release_admin, :poller_domain, :"poller@127.0.0.1")
+  end
+
+  def get_rpc_impl do
+    Application.get_env(:release_admin, :rpc_impl, RPC)
   end
 end
 

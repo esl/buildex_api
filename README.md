@@ -34,7 +34,7 @@ export RELEASE_ADMIN_GITHUB_CLIENT_SECRET=<GITHUB_CLIENT_SECRET>
   * Install Elixir dependencies with `mix deps.get`
   * Create and migrate the database with `mix ecto.create && mix ecto.migrate`
   * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `mix phx.server`
+  * Start Phoenix endpoint with `iex --name admin@127.0.0.1 --cookie secret -S mix phx.server`
 
 5. Navigate to the [authorization screen](http://localhost:4000/auth/github) and follow the authorization process. 
 

@@ -1,5 +1,5 @@
 defmodule ReleaseAdmin.Encryption.Vault do
-  use Cloak.Vault, otp_app: :my_app
+  use Cloak.Vault, otp_app: :release_admin
 
   @impl GenServer
   def init(config) do
