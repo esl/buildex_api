@@ -38,7 +38,7 @@ defmodule ReleaseAdmin.Factory do
   end
 
   def docker_task(task) do
-    %{task | runner: "docker_build"}
+    %{task | runner: "docker_build", docker_username: "username", docker_password: "123"}
   end
 
   def make_task(task) do

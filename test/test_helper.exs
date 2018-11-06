@@ -5,4 +5,3 @@ Mimic.copy(ReleaseAdmin.Services.RPC)
 ExUnit.start()
 
 Ecto.Adapters.SQL.Sandbox.mode(ReleaseAdmin.Repo, :manual)
-

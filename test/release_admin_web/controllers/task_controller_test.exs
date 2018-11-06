@@ -15,7 +15,7 @@ defmodule ReleaseAdminWeb.TaskControllerTest do
 
   describe "index" do
     test "lists all repository tasks", %{conn: conn, repo: repo} do
-      [task1, task2] = insert_list(2, :task, repository: repo)
+      [task1, task2] = insert_list(2, :task, repository: repo, docker_username: "username", docker_password: "123")
       conn = get(conn, repositories_task_path(conn, :index, repo))
       assert html_response(conn, 200) =~ to_string(task1.id)
       assert html_response(conn, 200) =~ to_string(task2.id)
@@ -52,7 +52,7 @@ defmodule ReleaseAdminWeb.TaskControllerTest do
 
       upload = %Plug.Upload{path: build_file, filename: "buildfile_test"}
 
-      attrs = %{runner: "docker_build", build_file: upload}
+      attrs = %{runner: "docker_build", build_file: upload, docker_username: "username", docker_password: "123"}
       conn = post(conn, repositories_task_path(conn, :create, repo), task: attrs)
 
       assert %{id: id} = redirected_params(conn)

@@ -35,7 +35,8 @@ defmodule ReleaseAdminWeb.AuthController do
       |> redirect(to: "/")
     else
       {:error, reason} ->
-        Logger.error("auth error reason: #{inspect reason}")
+        Logger.error("auth error reason: #{inspect(reason)}")
+
         conn
         |> put_flash(:error, reason)
         |> redirect(to: "/")

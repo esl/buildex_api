@@ -31,6 +31,6 @@ defmodule ReleaseAdmin.User do
 
   @spec by_username(String.t()) :: Ecto.Query.t()
   def by_username(username) do
-    from u in User, where: u.username == ^username
+    from(u in User, where: u.username == ^username)
   end
 end

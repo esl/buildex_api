@@ -18,6 +18,12 @@ defmodule ReleaseAdmin.Task do
     field(:path, :string, virtual: true)
     field(:ssh_key, EncryptedBinary)
 
+    # Docker credentials
+    field(:docker_username, :string)
+    field(:docker_email, :string)
+    field(:docker_password, EncryptedBinary)
+    field(:docker_servername, :string, default: "https://index.docker.io/v1/")
+
     belongs_to(:repository, Repository)
 
     timestamps(type: :utc_datetime)
@@ -35,12 +41,17 @@ defmodule ReleaseAdmin.Task do
       :build_file,
       :build_file_content,
       :commands,
-      :repository_id
+      :repository_id,
+      :docker_username,
+      :docker_email,
+      :docker_password,
+      :docker_servername
     ])
     |> validate_required([:repository_id, :runner])
     |> validate_inclusion(:runner, ["make", "docker_build"])
     |> maybe_extract_build_file()
     |> maybe_validate_build_file_content()
+    |> maybe_validate_docker_credentials()
     |> maybe_validate_source()
     |> foreign_key_constraint(:repository_id)
   end
@@ -78,4 +89,13 @@ defmodule ReleaseAdmin.Task do
   end
 
   defp maybe_extract_build_file(changeset), do: changeset
+
+  @spec maybe_validate_docker_credentials(Changeset.t()) :: Changeset.t()
+  defp maybe_validate_docker_credentials(%{valid?: false} = changeset), do: changeset
+
+  defp maybe_validate_docker_credentials(%{changes: %{runner: "docker_build"}} = changeset) do
+    validate_required(changeset, [:docker_username, :docker_password, :docker_servername])
+  end
+
+  defp maybe_validate_docker_credentials(changeset), do: changeset
 end
