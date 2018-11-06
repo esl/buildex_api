@@ -1,0 +1,23 @@
+language: elixir
+install: true
+sudo: false
+before_install:
+ - docker run --detach --rm --hostname postgres --name postgres -p 5432 postgres
+ - export RELEASE_ADMIN_POSTGRES_PORT=$(docker inspect --format '{{ (index (index .NetworkSettings.Ports "5432/tcp") 0).HostPort }}' postgres )
+ - PGPASSWORD=postgres until psql -h localhost -U "postgres" -P $RELEASE_ADMIN_POSTGRES_PORT -c '\q' &> /dev/null ; do printf '.'; sleep 1; done
+elixir:
+  - '1.7.2'
+before_script:
+  - "mix local.hex --force"
+  - "mix local.rebar --force"
+  - "mix deps.get"
+script:
+  - "mix test"
+otp_release:
+  - '21.0'
+cache:
+  directories:
+    - _build
+    - deps
+services:
+  - docker
