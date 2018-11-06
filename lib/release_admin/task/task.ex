@@ -58,9 +58,20 @@ defmodule ReleaseAdmin.Task do
 
   def update_changeset(task, attrs) do
     task
-    |> cast(attrs, [:fetch_url, :ssh_key, :env, :build_file, :build_file_content, :commands])
+    |> cast(attrs, [
+      :fetch_url,
+      :ssh_key,
+      :env,
+      :build_file,
+      :build_file_content,
+      :commands,
+      :docker_username,
+      :docker_password,
+      :docker_servername
+    ])
     |> maybe_extract_build_file()
     |> maybe_validate_build_file_content()
+    |> maybe_validate_docker_credentials()
   end
 
   @spec maybe_validate_build_file_content(Changeset.t()) :: Changeset.t()
