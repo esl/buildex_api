@@ -62,7 +62,9 @@ defmodule ReleaseAdminWeb.TaskControllerTest do
         runner: "docker_build",
         build_file: upload,
         docker_username: "username",
-        docker_password: "123"
+        docker_password: "123",
+        docker_image_name: "username/test",
+        docker_image_tag_tmpl: "latest"
       }
 
       conn = post(conn, repositories_task_path(conn, :create, repo), task: attrs)

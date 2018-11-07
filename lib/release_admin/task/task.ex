@@ -8,9 +8,12 @@ defmodule ReleaseAdmin.Task do
 
   schema "tasks" do
     field(:commands, {:array, :string}, default: [])
-    # Plug.Upload
+    # Plug.Upload - Dockerfile
     field(:build_file, :any, virtual: true)
+    # Dockerfile content
     field(:build_file_content, :string)
+    field(:docker_image_name, :string)
+    field(:docker_image_tag_tmpl, :string)
     field(:env, :map, default: %{})
     field(:fetch_url, :string)
     field(:runner, :string)
@@ -45,13 +48,15 @@ defmodule ReleaseAdmin.Task do
       :docker_username,
       :docker_email,
       :docker_password,
-      :docker_servername
+      :docker_servername,
+      :docker_image_name,
+      :docker_image_tag_tmpl
     ])
     |> validate_required([:repository_id, :runner])
     |> validate_inclusion(:runner, ["make", "docker_build"])
     |> maybe_extract_build_file()
     |> maybe_validate_build_file_content()
-    |> maybe_validate_docker_credentials()
+    |> maybe_validate_docker_attributes()
     |> maybe_validate_source()
     |> foreign_key_constraint(:repository_id)
   end
@@ -67,11 +72,13 @@ defmodule ReleaseAdmin.Task do
       :commands,
       :docker_username,
       :docker_password,
-      :docker_servername
+      :docker_servername,
+      :docker_image_name,
+      :docker_image_tag_tmpl
     ])
     |> maybe_extract_build_file()
     |> maybe_validate_build_file_content()
-    |> maybe_validate_docker_credentials()
+    |> maybe_validate_docker_attributes()
   end
 
   @spec maybe_validate_build_file_content(Changeset.t()) :: Changeset.t()
@@ -101,12 +108,18 @@ defmodule ReleaseAdmin.Task do
 
   defp maybe_extract_build_file(changeset), do: changeset
 
-  @spec maybe_validate_docker_credentials(Changeset.t()) :: Changeset.t()
-  defp maybe_validate_docker_credentials(%{valid?: false} = changeset), do: changeset
+  @spec maybe_validate_docker_attributes(Changeset.t()) :: Changeset.t()
+  defp maybe_validate_docker_attributes(%{valid?: false} = changeset), do: changeset
 
-  defp maybe_validate_docker_credentials(%{changes: %{runner: "docker_build"}} = changeset) do
-    validate_required(changeset, [:docker_username, :docker_password, :docker_servername])
+  defp maybe_validate_docker_attributes(%{changes: %{runner: "docker_build"}} = changeset) do
+    validate_required(changeset, [
+      :docker_username,
+      :docker_password,
+      :docker_servername,
+      :docker_image_name,
+      :docker_image_tag_tmpl
+    ])
   end
 
-  defp maybe_validate_docker_credentials(changeset), do: changeset
+  defp maybe_validate_docker_attributes(changeset), do: changeset
 end

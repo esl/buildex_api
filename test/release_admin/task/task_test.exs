@@ -64,6 +64,19 @@ defmodule ReleaseAdmin.TaskTest do
 
       assert %{docker_username: ["can't be blank"], docker_password: ["can't be blank"]}
     end
+
+    test "validates docker attributes" do
+      assert {:error, reason} =
+               %Task{}
+               |> Task.changeset(%{
+                 repository_id: 1,
+                 runner: "docker_build",
+                 build_file_content: "This is a test!"
+               })
+               |> Repo.insert()
+
+      assert %{docker_image_name: ["can't be blank"], docker_image_tag_tmpl: ["can't be blank"]}
+    end
   end
 
   describe "encryption" do
@@ -76,7 +89,9 @@ defmodule ReleaseAdmin.TaskTest do
         build_file_content: "This is a test!",
         ssh_key: "verylongsshkey",
         docker_username: "username",
-        docker_password: "123"
+        docker_password: "123",
+        docker_image_name: "username/test",
+        docker_image_tag_tmpl: "latest"
       }
 
       assert {:ok, task} =
@@ -100,7 +115,9 @@ defmodule ReleaseAdmin.TaskTest do
         runner: "docker_build",
         build_file_content: "This is a test!",
         docker_username: "username",
-        docker_password: "query_123"
+        docker_password: "query_123",
+        docker_image_name: "username/test",
+        docker_image_tag_tmpl: "latest"
       }
 
       assert {:ok, task} =
