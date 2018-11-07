@@ -116,8 +116,7 @@ defmodule ReleaseAdmin.Task do
       :docker_username,
       :docker_password,
       :docker_servername,
-      :docker_image_name,
-      :docker_image_tag_tmpl
+      :docker_image_name
     ])
   end
 
