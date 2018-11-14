@@ -57,8 +57,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :release_admin, ReleaseAdmin.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: {:system, "RELEASE_ADMIN_POSTGRES_USERNAME", "postgres"},
+  password: {:system, "RELEASE_ADMIN_POSTGRES_PASSWORD", "postgres"},
   database: "release_admin_dev",
-  hostname: "localhost",
+  hostname: {:system, "RELEASE_ADMIN_POSTGRES_HOSTNAME", "localhost"},
   pool_size: 10
