@@ -15,6 +15,14 @@ defmodule ReleaseAdmin.RuntimeConfig do
   def get_rpc_impl do
     Application.get_env(:release_admin, :rpc_impl, RPC)
   end
+
+  def get_database_port do
+    System.get_env("RELEASE_ADMIN_POSTGRES_PORT") || "5432"
+  end
+
+  def get_database_url do
+    System.get_env("DATABASE_URL")
+  end
 end
 
 defmodule ReleaseAdmin.LiveConfig do
