@@ -51,6 +51,32 @@ defmodule ReleaseAdmin.TaskTest do
 
       assert %{runner: ["is invalid"]} == errors_on(reason)
     end
+
+    test "validates docker credentials" do
+      assert {:error, reason} =
+               %Task{}
+               |> Task.changeset(%{
+                 repository_id: 1,
+                 runner: "docker_build",
+                 build_file_content: "This is a test!"
+               })
+               |> Repo.insert()
+
+      assert %{docker_username: ["can't be blank"], docker_password: ["can't be blank"]}
+    end
+
+    test "validates docker attributes" do
+      assert {:error, reason} =
+               %Task{}
+               |> Task.changeset(%{
+                 repository_id: 1,
+                 runner: "docker_build",
+                 build_file_content: "This is a test!"
+               })
+               |> Repo.insert()
+
+      assert %{docker_image_name: ["can't be blank"], docker_image_tag_tmpl: ["can't be blank"]}
+    end
   end
 
   describe "encryption" do
@@ -61,7 +87,11 @@ defmodule ReleaseAdmin.TaskTest do
         repository_id: repo.id,
         runner: "docker_build",
         build_file_content: "This is a test!",
-        ssh_key: "verylongsshkey"
+        ssh_key: "verylongsshkey",
+        docker_username: "username",
+        docker_password: "123",
+        docker_image_name: "username/test",
+        docker_image_tag_tmpl: "latest"
       }
 
       assert {:ok, task} =
@@ -75,6 +105,32 @@ defmodule ReleaseAdmin.TaskTest do
       assert {:ok, %{rows: [[result]]}} = SQL.query(Repo, query, [task.id])
       assert is_binary(result)
       assert EncryptedBinary.load(result) == {:ok, "verylongsshkey"}
+    end
+
+    test "encrypts docker password" do
+      repo = insert(:repository)
+
+      task_attrs = %{
+        repository_id: repo.id,
+        runner: "docker_build",
+        build_file_content: "This is a test!",
+        docker_username: "username",
+        docker_password: "query_123",
+        docker_image_name: "username/test",
+        docker_image_tag_tmpl: "latest"
+      }
+
+      assert {:ok, task} =
+               %Task{}
+               |> Task.changeset(task_attrs)
+               |> Repo.insert()
+
+      # Use raw query to ensure docker_password is encrypted in the DB because Ecto.Types loads and decrypt
+      # it automatically
+      query = "select docker_password from tasks as t where t.id = $1 limit 1"
+      assert {:ok, %{rows: [[result]]}} = SQL.query(Repo, query, [task.id])
+      assert is_binary(result)
+      assert EncryptedBinary.load(result) == {:ok, "query_123"}
     end
   end
 

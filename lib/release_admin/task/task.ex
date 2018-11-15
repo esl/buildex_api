@@ -8,15 +8,24 @@ defmodule ReleaseAdmin.Task do
 
   schema "tasks" do
     field(:commands, {:array, :string}, default: [])
-    # Plug.Upload
+    # Plug.Upload - Dockerfile
     field(:build_file, :any, virtual: true)
+    # Dockerfile content
     field(:build_file_content, :string)
+    field(:docker_image_name, :string)
+    field(:docker_image_tag_tmpl, :string)
     field(:env, :map, default: %{})
     field(:fetch_url, :string)
     field(:runner, :string)
     field(:source, :string)
     field(:path, :string, virtual: true)
     field(:ssh_key, EncryptedBinary)
+
+    # Docker credentials
+    field(:docker_username, :string)
+    field(:docker_email, :string)
+    field(:docker_password, EncryptedBinary)
+    field(:docker_servername, :string, default: "https://index.docker.io/v1/")
 
     belongs_to(:repository, Repository)
 
@@ -35,21 +44,41 @@ defmodule ReleaseAdmin.Task do
       :build_file,
       :build_file_content,
       :commands,
-      :repository_id
+      :repository_id,
+      :docker_username,
+      :docker_email,
+      :docker_password,
+      :docker_servername,
+      :docker_image_name,
+      :docker_image_tag_tmpl
     ])
     |> validate_required([:repository_id, :runner])
     |> validate_inclusion(:runner, ["make", "docker_build"])
     |> maybe_extract_build_file()
     |> maybe_validate_build_file_content()
+    |> maybe_validate_docker_attributes()
     |> maybe_validate_source()
     |> foreign_key_constraint(:repository_id)
   end
 
   def update_changeset(task, attrs) do
     task
-    |> cast(attrs, [:fetch_url, :ssh_key, :env, :build_file, :build_file_content, :commands])
+    |> cast(attrs, [
+      :fetch_url,
+      :ssh_key,
+      :env,
+      :build_file,
+      :build_file_content,
+      :commands,
+      :docker_username,
+      :docker_password,
+      :docker_servername,
+      :docker_image_name,
+      :docker_image_tag_tmpl
+    ])
     |> maybe_extract_build_file()
     |> maybe_validate_build_file_content()
+    |> maybe_validate_docker_attributes()
   end
 
   @spec maybe_validate_build_file_content(Changeset.t()) :: Changeset.t()
@@ -78,4 +107,18 @@ defmodule ReleaseAdmin.Task do
   end
 
   defp maybe_extract_build_file(changeset), do: changeset
+
+  @spec maybe_validate_docker_attributes(Changeset.t()) :: Changeset.t()
+  defp maybe_validate_docker_attributes(%{valid?: false} = changeset), do: changeset
+
+  defp maybe_validate_docker_attributes(%{changes: %{runner: "docker_build"}} = changeset) do
+    validate_required(changeset, [
+      :docker_username,
+      :docker_password,
+      :docker_servername,
+      :docker_image_name
+    ])
+  end
+
+  defp maybe_validate_docker_attributes(changeset), do: changeset
 end

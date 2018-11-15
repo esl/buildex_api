@@ -48,6 +48,36 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :docker_image_name, class: "control-label" %>
+    <%= text_input f, :docker_image_name, class: "form-control" %>
+    <%= error_tag f, :docker_image_name %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :docker_image_tag_tmpl, class: "control-label" %>
+    <%= text_input f, :docker_image_tag_tmpl, class: "form-control" %>
+    <%= error_tag f, :docker_image_tag_tmpl %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :docker_username, class: "control-label" %>
+    <%= text_input f, :docker_username, class: "form-control" %>
+    <%= error_tag f, :docker_username %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :docker_password, class: "control-label" %>
+    <%= password_input f, :docker_password, class: "form-control" %>
+    <%= error_tag f, :docker_password %>
+  </div>
+
+  <div class="form-group">
+    <%= label f, :docker_servername, class: "control-label" %>
+    <%= text_input f, :docker_servername, class: "form-control" %>
+    <%= error_tag f, :docker_servername %>
+  </div>
+
+  <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>

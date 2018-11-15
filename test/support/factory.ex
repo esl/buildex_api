@@ -37,10 +37,19 @@ defmodule ReleaseAdmin.Factory do
     %Task{repository: build(:repository)}
   end
 
+  @spec docker_task(Task.t()) :: Task.t()
   def docker_task(task) do
-    %{task | runner: "docker_build"}
+    %{
+      task
+      | runner: "docker_build",
+        docker_username: "username",
+        docker_password: "123",
+        docker_image_name: "username/image",
+        docker_image_tag_tmpl: "latest"
+    }
   end
 
+  @spec make_task(Task.t()) :: Task.t()
   def make_task(task) do
     %{task | runner: "make"}
   end

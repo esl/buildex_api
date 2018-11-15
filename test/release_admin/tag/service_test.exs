@@ -62,6 +62,7 @@ defmodule ReleaseAdmin.Tag.ServiceTest do
     test "deletes tag", %{repo: repo} do
       tag = insert(:tag, repository: repo)
       TagService.delete_tag!(tag)
+
       assert_raise Ecto.NoResultsError, fn ->
         TagService.get_tag!(tag.id)
       end
