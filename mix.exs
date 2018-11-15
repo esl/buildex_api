@@ -46,7 +46,8 @@ defmodule ReleaseAdmin.Mixfile do
       {:ex_machina, "~> 2.2", only: :test},
       {:tentacat, "~> 1.2.0"},
       {:mimic, "~> 0.2", only: :test},
-      {:cloak, "~> 0.9.1"}
+      {:cloak, "~> 0.9.1"},
+      {:confex, "~> 3.3.0"}
     ]
   end
 

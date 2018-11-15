@@ -15,11 +15,12 @@ config :logger, level: :warn
 # Configure your database
 config :release_admin, ReleaseAdmin.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  username: {:system, "RELEASE_ADMIN_POSTGRES_USERNAME", "postgres"},
+  password: {:system, "RELEASE_ADMIN_POSTGRES_PASSWORD", "postgres"},
   database: "release_admin_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox
+  hostname: {:system, "RELEASE_ADMIN_POSTGRES_HOSTNAME", "localhost"},
+  pool: Ecto.Adapters.SQL.Sandbox,
+  port: {:system, "RELEASE_ADMIN_POSTGRES_PORT", "5432"}
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
   client_id: "DUMMY_CLIENT_ID",
