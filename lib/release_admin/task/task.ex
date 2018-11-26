@@ -79,6 +79,7 @@ defmodule ReleaseAdmin.Task do
     |> maybe_extract_build_file()
     |> maybe_validate_build_file_content()
     |> maybe_validate_docker_attributes()
+    |> discard_empty_password()
   end
 
   @spec maybe_validate_build_file_content(Changeset.t()) :: Changeset.t()
@@ -121,4 +122,14 @@ defmodule ReleaseAdmin.Task do
   end
 
   defp maybe_validate_docker_attributes(changeset), do: changeset
+
+  @spec discard_empty_password(Changeset.t()) :: Changeset.t()
+  defp discard_empty_password(changeset) do
+    case get_change(changeset, :docker_passowrd) do
+      empty when is_nil(empty) or empty == "" ->
+        delete_change(changeset, :docker_password)
+      _ ->
+        changeset
+    end
+  end
 end
