@@ -3,6 +3,7 @@ defmodule ReleaseAdminWeb.TaskControllerTest do
   import ReleaseAdmin.Factory
 
   alias ReleaseAdmin.Auth.Session
+  alias ReleaseAdmin.{Repo, Task}
 
   setup %{conn: conn} do
     user = insert(:user)
@@ -101,6 +102,16 @@ defmodule ReleaseAdminWeb.TaskControllerTest do
 
       conn = get(conn, repositories_task_path(conn, :show, repo, task))
       assert html_response(conn, 200) =~ "Task updated successfully."
+    end
+  end
+
+  describe "try to update password credential" do
+    test "do not allow change the password to an empty value", %{conn: conn, repo: repo} do
+      task = insert(:task, repository: repo)
+      attrs = %{docker_password: ""}
+      conn = put(conn, repositories_task_path(conn, :update, repo, task), task: attrs)
+      assert redirected_to(conn) == repositories_task_path(conn, :show, repo, task)
+      assert task.docker_password == Repo.get!(Task, task.id).docker_password
     end
   end
 
