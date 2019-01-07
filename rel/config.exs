@@ -53,4 +53,10 @@ release :release_admin do
       :runtime_tools
     ]
   )
+
+  set(
+    commands: [
+      migrate: "rel/commands/migrate.sh"
+    ]
+  )
 end

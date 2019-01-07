@@ -15,6 +15,10 @@ defmodule ReleaseAdmin.RuntimeConfig do
   def get_rpc_impl do
     Application.get_env(:release_admin, :rpc_impl, RPC)
   end
+
+  def get_repo do
+    ReleaseAdmin.Repo
+  end
 end
 
 defmodule ReleaseAdmin.LiveConfig do
