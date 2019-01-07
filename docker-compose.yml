@@ -1,7 +1,10 @@
 version: '3.2'
+
 services:
   db:
     image: postgres:9.6
+    ports:
+      - 5432:5432
     environment:
       # Set user/password for Postgres
       POSTGRES_USER: postgres
@@ -10,6 +13,7 @@ services:
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - pgdata:/var/lib/postgresql/data
+    restart: always
 
   web:
     build: .
@@ -22,6 +26,9 @@ services:
       RELEASE_ADMIN_POSTGRES_USERNAME: postgres
       RELEASE_ADMIN_POSTGRES_PASSWORD: postgres
       RELEASE_ADMIN_POSTGRES_HOSTNAME: localhost
+      DB_SECRET_KEY: ${DB_SECRET_KEY}
+      RELEASE_ADMIN_GITHUB_CLIENT_ID: ${RELEASE_ADMIN_GITHUB_CLIENT_ID}
+      RELEASE_ADMIN_GITHUB_CLIENT_SECRET: ${RELEASE_ADMIN_GITHUB_CLIENT_SECRET}
     ports:
       - "4000:4000"
     depends_on:
