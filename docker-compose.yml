@@ -1,0 +1,33 @@
+version: '3.2'
+services:
+  db:
+    image: postgres:9.6
+    environment:
+      # Set user/password for Postgres
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      # Set a path where Postgres should store the data
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  web:
+    build: .
+    volumes:
+      - type: bind
+        source: .
+        target: /app
+    environment:
+      # Set user/password for Postgres
+      RELEASE_ADMIN_POSTGRES_USERNAME: postgres
+      RELEASE_ADMIN_POSTGRES_PASSWORD: postgres
+      RELEASE_ADMIN_POSTGRES_HOSTNAME: localhost
+    ports:
+      - "4000:4000"
+    depends_on:
+      # The db container needs to be started before we start this container
+      - db
+
+# Define the volumes
+volumes:
+  pgdata:
