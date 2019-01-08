@@ -31,6 +31,12 @@ export RELEASE_ADMIN_GITHUB_CLIENT_ID=<GITHUB_CLIENT_ID>
 export RELEASE_ADMIN_GITHUB_CLIENT_SECRET=<GITHUB_CLIENT_SECRET>
 ```
 
+The Cloak application needs to be configured with a base64 encoded secret key.
+
+```
+export DB_SECRET_KEY=<BASE64_ENCODED_VALUE>
+```
+
 4. Bootstrap the database, fetch Javascript dependencies, and start the Phoenix web server :
 
   * Install Elixir dependencies with `mix deps.get`
