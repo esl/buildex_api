@@ -1,3 +1,4 @@
+dist: xenial
 language: elixir
 install: true
 sudo: true
