@@ -1,6 +1,6 @@
 defmodule ReleaseAdmin.ReleaseTasks.Common do
-  alias ReleaseAdmin.RuntimeConfig
-
+  alias ReleaseAdmin.Repo
+  
   @start_apps [:crypto, :logger, :ssl, :postgrex, :ecto]
 
   @spec setup((() -> any())) :: any()
@@ -14,7 +14,7 @@ defmodule ReleaseAdmin.ReleaseTasks.Common do
     Enum.each(@start_apps, &Application.ensure_all_started/1)
 
     IO.puts("Starting repo..")
-    RuntimeConfig.get_repo().start_link(pool_size: 1)
+    Repo.start_link(pool_size: 1)
 
     fun.()
 
