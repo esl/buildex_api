@@ -48,12 +48,12 @@ defmodule ReleaseAdmin.Mixfile do
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:phoenix_pubsub, "~> 1.0"},
       {:plug_cowboy, "~> 2.0.0"},
-      {:poison, "~> 4.0.1",  override: true},
+      {:poison, "~> 4.0.1", override: true},
       {:postgrex, "~> 0.14.1"},
       {:rexbug, ">= 1.0.0", only: :dev},
       {:tentacat, "~> 1.2.0"},
       {:ueberauth, "~> 0.4"},
-      {:ueberauth_github, "~> 0.7"},
+      {:ueberauth_github, "~> 0.7"}
     ]
   end
 
