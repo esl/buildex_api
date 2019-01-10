@@ -10,9 +10,9 @@ config :release_admin, ReleaseAdmin.Repo,
   username: "postgres",
   password: "postgres",
   database: "release_admin_test",
-  hostname: "localhost",
-  pool: Ecto.Adapters.SQL.Sandbox,
-  port: "5432"
+  hostname: {:system, "POSTGRES_HOSTNAME", "localhost"},
+  port: {:system, :integer, "POSTGRES_PORT", 5432},
+  pool: Ecto.Adapters.SQL.Sandbox
 
 config :ueberauth, Ueberauth.Strategy.Github.OAuth,
   client_id: "DUMMY_CLIENT_ID",

@@ -5,8 +5,8 @@ sudo: true
 before_install:
  - sudo apt-get update && sudo apt-get install postgresql-client
  - docker run --detach --rm --hostname postgres --name postgres -e POSTGRES_PASSWORD=postgres -p 5432 postgres:9.6.10-alpine
- - export RELEASE_ADMIN_POSTGRES_PORT=$(docker inspect --format '{{ (index (index .NetworkSettings.Ports "5432/tcp") 0).HostPort }}' postgres )
- - until PGPASSWORD=postgres psql -h localhost -U "postgres" -p $RELEASE_ADMIN_POSTGRES_PORT -c '\q' &> /dev/null ; do printf '.'; sleep 1; done
+ - export POSTGRES_PORT=$(docker inspect --format '{{ (index (index .NetworkSettings.Ports "5432/tcp") 0).HostPort }}' postgres )
+ - until PGPASSWORD=postgres psql -h localhost -U "postgres" -p $POSTGRES_PORT -c '\q' &> /dev/null ; do printf '.'; sleep 1; done
 elixir:
   - '1.7.2'
 before_script:
