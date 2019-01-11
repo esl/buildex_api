@@ -1,7 +1,7 @@
 defmodule ReleaseAdmin.ReleaseTasks.Migrate do
   alias ReleaseAdmin.ReleaseTasks.Common
 
-  alias ReleaseAdmin.RuntimeConfig
+  alias ReleaseAdmin.Repo
 
   @spec exec() :: any()
   def exec do
@@ -12,10 +12,9 @@ defmodule ReleaseAdmin.ReleaseTasks.Migrate do
   end
 
   defp migrate do
-    repo = RuntimeConfig.get_repo()
-    app = Keyword.get(repo.config, :otp_app)
+    app = Keyword.get(Repo.config(), :otp_app)
     IO.puts("Running migrations for #{app}")
-    Ecto.Migrator.run(repo, migrations_path(repo), :up, all: true)
+    Ecto.Migrator.run(Repo, migrations_path(Repo), :up, all: true)
   end
 
   defp migrations_path(repo), do: priv_path_for(repo, "migrations")

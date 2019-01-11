@@ -17,5 +17,7 @@ defmodule ReleaseAdminWeb.StubsGeneration do
       provider: :github,
       uid: git_id
     }
+
+    github_oauth
   end
 end

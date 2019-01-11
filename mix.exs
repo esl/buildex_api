@@ -33,22 +33,27 @@ defmodule ReleaseAdmin.Mixfile do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.3.4"},
-      {:phoenix_pubsub, "~> 1.0"},
-      {:phoenix_ecto, "~> 3.2"},
-      {:postgrex, ">= 0.0.0"},
+      {:cloak_ecto, "~> 1.0.0-alpha.0"},
+      {:confex, git: "https://github.com/bryanhuntesl/confex.git", ref: "d9c1f82"},
+      {:cowboy, "~> 2.5.0"},
+      {:distillery, "~> 2.0"},
+      {:ecto_sql, "~> 3.0"},
+      {:ex_machina, "~> 2.2.2", only: :test},
+      {:gettext, "~> 0.11"},
+      {:jason, "~> 1.1"},
+      {:mimic, "~> 0.2", only: :test},
+      {:phoenix, "~> 1.4.0"},
+      {:phoenix_ecto, "~> 4.0"},
       {:phoenix_html, "~> 2.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
-      {:gettext, "~> 0.11"},
-      {:cowboy, "~> 1.0"},
-      {:ueberauth, "~> 0.4"},
-      {:ueberauth_github, "~> 0.7"},
-      {:ex_machina, "~> 2.2", only: :test},
+      {:phoenix_pubsub, "~> 1.0"},
+      {:plug_cowboy, "~> 2.0.0"},
+      {:poison, "~> 4.0.1", override: true},
+      {:postgrex, "~> 0.14.1"},
+      {:rexbug, ">= 1.0.0", only: :dev},
       {:tentacat, "~> 1.2.0"},
-      {:mimic, "~> 0.2", only: :test},
-      {:cloak, "~> 0.9.1"},
-      {:confex, "~> 3.3.0"},
-      {:distillery, "~> 2.0"}
+      {:ueberauth, "~> 0.4"},
+      {:ueberauth_github, "~> 0.7"}
     ]
   end
 

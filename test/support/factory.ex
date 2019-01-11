@@ -1,5 +1,6 @@
 defmodule ReleaseAdmin.Factory do
-  use ExMachina.Ecto, repo: ReleaseAdmin.Repo
+  alias ReleaseAdmin.Repo
+  use ExMachina.Ecto, repo: Repo
 
   alias ReleaseAdmin.{Repository, User, Tag, Task}
 

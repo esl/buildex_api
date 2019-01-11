@@ -3,7 +3,7 @@ defmodule ReleaseAdmin.Encryption.Vault do
 
   @impl GenServer
   def init(config) do
-    secret_key = ReleaseAdmin.RuntimeConfig.db_secret_key()
+    secret_key = ReleaseAdmin.Config.db_secret_key()
 
     config =
       Keyword.put(config, :ciphers,

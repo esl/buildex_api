@@ -46,4 +46,4 @@ RUN mix release
 ENTRYPOINT ["_build/prod/rel/release_admin/bin/release_admin"]
 
 # run phoenix in production on PORT 4000
-CMD ["foreground"]
+CMD ["help"]

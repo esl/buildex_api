@@ -1,3 +1,5 @@
 defmodule ReleaseAdmin.Encryption.EncryptedBinary do
-  use Cloak.Fields.Binary, vault: ReleaseAdmin.Encryption.Vault
+  alias ReleaseAdmin.Encryption.Vault
+
+  use Cloak.Ecto.Binary, vault: Vault
 end
