@@ -44,7 +44,8 @@ release :release_admin do
 
   set(
     commands: [
-      migrate: "rel/commands/migrate.sh"
+      migrate: "rel/commands/migrate.sh",
+      create: "rel/commands/create.sh"
     ]
   )
 end
