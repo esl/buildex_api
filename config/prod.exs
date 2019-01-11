@@ -11,7 +11,9 @@ config :release_admin, ReleaseAdminWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
-config :release_admin, :db_secret_key, {:system, :base64, "DB_SECRET_KEY"}
+config :release_admin,
+       :db_secret_key,
+       {:system, {ReleaseAdmin.Config, :base64decode, []}, "DB_SECRET_KEY"}
 
 config :release_admin, ReleaseAdmin.Repo,
   username: {:system, "POSTGRES_USERNAME"},

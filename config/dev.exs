@@ -30,7 +30,7 @@ config :phoenix, :stacktrace_depth, 20
 
 config :release_admin,
        :db_secret_key,
-       {:system, :base64, "DB_SECRET_KEY",
+       {:system, {ReleaseAdmin.Config, :base64decode, []}, "DB_SECRET_KEY",
         <<50, 242, 77, 104, 130, 206, 248, 150, 208, 166, 156, 235, 1, 110, 81, 73, 188, 48, 107,
           86, 47, 166, 219, 164, 11, 171, 9, 81, 53, 33, 255, 7>>}
 

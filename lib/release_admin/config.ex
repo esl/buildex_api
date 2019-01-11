@@ -25,4 +25,10 @@ defmodule ReleaseAdmin.Config do
       other -> other
     end
   end
+
+  def base64decode(value) do
+    {:ok, value |> Base.decode64!()}
+  rescue
+    e in ArgumentError -> {:error, e.message}
+  end
 end
