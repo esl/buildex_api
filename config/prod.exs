@@ -18,7 +18,7 @@ config :release_admin,
 config :release_admin, ReleaseAdmin.Repo,
   username: {:system, "POSTGRES_USERNAME"},
   password: {:system, "POSTGRES_PASSWORD"},
-  database: "release_admin",
+  database: {:system, "POSTGRES_DATABASE"},
   hostname: {:system, "POSTGRES_HOSTNAME"},
   port: {:system, :integer, "POSTGRES_PORT", 5432},
   pool_size: 10
