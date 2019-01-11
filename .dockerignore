@@ -7,6 +7,5 @@ Makefile
 README.md
 docker-compose.yml
 docs
-rel
 test
 _build
