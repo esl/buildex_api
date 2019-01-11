@@ -43,7 +43,10 @@ RUN mix phx.digest
 # create release
 RUN mix release
 
+ENV REPLACE_OS_VARS=true
 ENTRYPOINT ["_build/prod/rel/release_admin/bin/release_admin"]
+
+HEALTHCHECK --start-period=60s --interval=10s --timeout=10s CMD curl -f "http://localhost:8080/?health" || exit 1
 
 # run phoenix in production on PORT 4000
 CMD ["help"]
