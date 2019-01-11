@@ -3,7 +3,7 @@
   "certifi": {:hex, :certifi, "2.0.0", "a0c0e475107135f76b8c1d5bc7efb33cd3815cb3cf3dea7aefdd174dabead064", [:rebar3], [], "hexpm"},
   "cloak": {:hex, :cloak, "1.0.0-alpha.0", "5972cd4e4adc4246618f8bb3589f1db68be4426baf163357572444162f841e15", [:mix], [{:jason, "~> 1.0", [hex: :jason, repo: "hexpm", optional: true]}, {:pbkdf2, "~> 2.0", [hex: :pbkdf2, repo: "hexpm", optional: true]}], "hexpm"},
   "cloak_ecto": {:hex, :cloak_ecto, "1.0.0-alpha.0", "21b21c52769f9baa6f680192b4e46a910183d1c4c67d8b2250d149293f291328", [:mix], [{:cloak, "1.0.0-alpha.0", [hex: :cloak, repo: "hexpm", optional: false]}, {:ecto, "~> 3.0.0", [hex: :ecto, repo: "hexpm", optional: false]}, {:flow, "~> 0.14", [hex: :flow, repo: "hexpm", optional: false]}, {:pbkdf2, "~> 2.0", [hex: :pbkdf2, repo: "hexpm", optional: true]}], "hexpm"},
-  "confex": {:git, "https://github.com/bryanhuntesl/confex.git", "d9c1f825c3a4cad30ec01188063a6568c8f05aff", [ref: "d9c1f82"]},
+  "confex": {:hex, :confex, "3.4.0", "8b1c3cc7a93320291abb31223a178df19d7f722ee816c05a8070c8c9a054560d", [:mix], [], "hexpm"},
   "connection": {:hex, :connection, "1.0.4", "a1cae72211f0eef17705aaededacac3eb30e6625b04a6117c1b2db6ace7d5976", [:mix], [], "hexpm"},
   "cowboy": {:hex, :cowboy, "2.5.0", "4ef3ae066ee10fe01ea3272edc8f024347a0d3eb95f6fbb9aed556dacbfc1337", [:rebar3], [{:cowlib, "~> 2.6.0", [hex: :cowlib, repo: "hexpm", optional: false]}, {:ranch, "~> 1.6.2", [hex: :ranch, repo: "hexpm", optional: false]}], "hexpm"},
   "cowlib": {:hex, :cowlib, "2.6.0", "8aa629f81a0fc189f261dc98a42243fa842625feea3c7ec56c48f4ccdb55490f", [:rebar3], [], "hexpm"},

@@ -34,7 +34,7 @@ defmodule ReleaseAdmin.Mixfile do
   defp deps do
     [
       {:cloak_ecto, "~> 1.0.0-alpha.0"},
-      {:confex, git: "https://github.com/bryanhuntesl/confex.git", ref: "d9c1f82"},
+      {:confex, "~> 3.4.0"},
       {:cowboy, "~> 2.5.0"},
       {:distillery, "~> 2.0"},
       {:ecto_sql, "~> 3.0"},
