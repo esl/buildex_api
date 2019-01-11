@@ -45,7 +45,6 @@ iex(2)> 32 |> :crypto.strong_rand_bytes() |> Base.encode64
 "VdEdsw4VChhQuVQkLxZ/BVbZ/Eayo7qThpxw2g3DKuA="
 ```
 
-
 Once you have done so, you will need to expose the base64 value as the environmental variable `DB_SECRET_KEY` i.e: 
 
 ```
