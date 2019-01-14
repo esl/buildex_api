@@ -128,6 +128,7 @@ defmodule ReleaseAdmin.Task do
     case get_change(changeset, :docker_passowrd) do
       empty when is_nil(empty) or empty == "" ->
         delete_change(changeset, :docker_password)
+
       _ ->
         changeset
     end

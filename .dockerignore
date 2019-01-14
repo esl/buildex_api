@@ -1,0 +1,11 @@
+.envrc.example
+.git
+.gitignore
+.travis.yml
+Dockerfile
+Makefile
+README.md
+docker-compose.yml
+docs
+test
+_build

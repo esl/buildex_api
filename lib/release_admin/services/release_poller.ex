@@ -1,5 +1,5 @@
 defmodule ReleaseAdmin.Services.ReleasePoller do
-  alias ReleaseAdmin.{Repository, RuntimeConfig}
+  alias ReleaseAdmin.{Repository, Services.RPC}
 
   @spec start_polling_repo(Repository.t()) :: {:error, any()} | {:ok, any()}
   def start_polling_repo(repo) do
@@ -12,7 +12,7 @@ defmodule ReleaseAdmin.Services.ReleasePoller do
         :adapter
       ])
 
-    case RuntimeConfig.get_rpc_impl().start_polling_repo(repo_payload) do
+    case RPC.start_polling_repo(repo_payload) do
       {:badrpc, reason} ->
         {:error, reason}
 
@@ -29,7 +29,7 @@ defmodule ReleaseAdmin.Services.ReleasePoller do
 
   @spec stop_polling_repo(Repository.t()) :: {:error, any()} | :ok
   def stop_polling_repo(%{repository_url: repository_url}) do
-    case RuntimeConfig.get_rpc_impl().stop_polling_repo(repository_url) do
+    case RPC.stop_polling_repo(repository_url) do
       {:badrpc, reason} ->
         {:error, reason}
 

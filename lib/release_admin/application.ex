@@ -1,24 +1,22 @@
 defmodule ReleaseAdmin.Application do
   use Application
+  alias ReleaseAdmin.Encryption.Vault
+  alias ReleaseAdmin.Repo
+  alias ReleaseAdminWeb.Endpoint
 
-  # See https://hexdocs.pm/elixir/Application.html
-  # for more information on OTP Applications
   def start(_type, _args) do
     import Supervisor.Spec
 
-    # Define workers and child supervisors to be supervised
+    # https://github.com/Nebo15/confex#populating-configuration-at-start-time
+
+    Confex.resolve_env!(:ueberauth)
+
     children = [
-      # Start the Ecto repository
-      supervisor(ReleaseAdmin.Repo, []),
-      # Start the endpoint when the application starts
-      supervisor(ReleaseAdminWeb.Endpoint, []),
-      ReleaseAdmin.Encryption.Vault
-      # Start your own worker by calling: ReleaseAdmin.Worker.start_link(arg1, arg2, arg3)
-      # worker(ReleaseAdmin.Worker, [arg1, arg2, arg3]),
+      supervisor(Repo, []),
+      supervisor(Endpoint, []),
+      Vault
     ]
 
-    # See https://hexdocs.pm/elixir/Supervisor.html
-    # for other strategies and supported options
     opts = [strategy: :one_for_one, name: ReleaseAdmin.Supervisor]
     Supervisor.start_link(children, opts)
   end
@@ -26,7 +24,7 @@ defmodule ReleaseAdmin.Application do
   # Tell Phoenix to update the endpoint configuration
   # whenever the application is updated.
   def config_change(changed, _new, removed) do
-    ReleaseAdminWeb.Endpoint.config_change(changed, removed)
+    Endpoint.config_change(changed, removed)
     :ok
   end
 end
