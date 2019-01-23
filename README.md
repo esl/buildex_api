@@ -1,6 +1,6 @@
 # ReleaseAdmin
 
-[![Build Status](https://travis-ci.org/sescobb27/release_admin.svg?branch=master)](https://travis-ci.org/sescobb27/release_admin)
+[![Build Status](https://travis-ci.org/esl/release_admin.svg?branch=master)](https://travis-ci.org/esl/release_admin)
 
 # Development prerequisites
 
