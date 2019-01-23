@@ -57,7 +57,7 @@ Bootstrap the database, fetch Javascript dependencies, and start the Phoenix web
 
   * Install Elixir dependencies with `mix deps.get`
   * Create and migrate the database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
+  * Install Node.js dependencies with `cd assets && npm install && cd ../`
   * Start Phoenix endpoint with `iex --name admin@127.0.0.1 --cookie secret -S mix phx.server`
 
 ## Log in and follow the auth process
