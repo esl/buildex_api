@@ -1,4 +1,4 @@
-defmodule ReleaseAdmin.DataCase do
+defmodule Buildex.API.DataCase do
   @moduledoc """
   This module defines the setup for tests requiring
   access to the application's data layer.
@@ -16,20 +16,20 @@ defmodule ReleaseAdmin.DataCase do
 
   using do
     quote do
-      alias ReleaseAdmin.Repo
+      alias Buildex.API.Repo
 
       import Ecto
       import Ecto.Changeset
       import Ecto.Query
-      import ReleaseAdmin.DataCase
+      import Buildex.API.DataCase
     end
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ReleaseAdmin.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Buildex.API.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ReleaseAdmin.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Buildex.API.Repo, {:shared, self()})
     end
 
     :ok

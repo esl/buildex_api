@@ -1,9 +1,9 @@
 defmodule ReleaseAdminWeb.TaskControllerTest do
   use ReleaseAdminWeb.ConnCase
-  import ReleaseAdmin.Factory
+  import Buildex.API.Factory
 
-  alias ReleaseAdmin.Auth.Session
-  alias ReleaseAdmin.{Repo, Task}
+  alias Buildex.API.Auth.Session
+  alias Buildex.API.{Repo, Task}
 
   setup %{conn: conn} do
     user = insert(:user)

@@ -1,11 +1,11 @@
 defmodule ReleaseAdminWeb.PollerControllerTest do
   use ReleaseAdminWeb.ConnCase
   import Mimic
-  import ReleaseAdmin.Factory
+  import Buildex.API.Factory
   import ExUnit.CaptureLog
 
-  alias ReleaseAdmin.Auth.Session
-  alias ReleaseAdmin.Services.RPC
+  alias Buildex.API.Auth.Session
+  alias Buildex.API.Services.RPC
 
   setup :verify_on_exit!
 

@@ -1,9 +1,9 @@
 defmodule ReleaseAdminWeb.RepositoriesControllerTest do
   use ReleaseAdminWeb.ConnCase
-  import ReleaseAdmin.Factory
+  import Buildex.API.Factory
 
-  alias ReleaseAdmin.Auth.Session
-  alias ReleaseAdmin.Repository.Service, as: RepositoryService
+  alias Buildex.API.Auth.Session
+  alias Buildex.API.Repository.Service, as: RepositoryService
 
   setup %{conn: conn} do
     user = insert(:user)
