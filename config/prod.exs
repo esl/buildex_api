@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :release_admin, ReleaseAdminWeb.Endpoint,
+config :buildex_api, ReleaseAdminWeb.Endpoint,
   http: [port: {:system, :integer, "PORT", 8080}],
   load_from_system_env: true,
   url: [host: {:system, "HOST", "localhost"}],
@@ -11,11 +11,11 @@ config :release_admin, ReleaseAdminWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
-config :release_admin,
+config :buildex_api,
        :db_secret_key,
-       {:system, {ReleaseAdmin.Config, :base64decode, []}, "DB_SECRET_KEY"}
+       {:system, {Buildex.API.Config, :base64decode, []}, "DB_SECRET_KEY"}
 
-config :release_admin, ReleaseAdmin.Repo,
+config :buildex_api, Buildex.API.Repo,
   username: {:system, "POSTGRES_USERNAME"},
   password: {:system, "POSTGRES_PASSWORD"},
   database: {:system, "POSTGRES_DATABASE"},

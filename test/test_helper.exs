@@ -1,7 +1,7 @@
 {:ok, _} = Application.ensure_all_started(:ex_machina)
-Mimic.copy(ReleaseAdmin.Services.Github)
-Mimic.copy(ReleaseAdmin.Services.RPC)
+Mimic.copy(Buildex.API.Services.Github)
+Mimic.copy(Buildex.API.Services.RPC)
 
 ExUnit.start()
 
-Ecto.Adapters.SQL.Sandbox.mode(ReleaseAdmin.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(Buildex.API.Repo, :manual)

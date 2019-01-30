@@ -26,10 +26,10 @@ defmodule ReleaseAdminWeb.ChannelCase do
   end
 
   setup tags do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(ReleaseAdmin.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Buildex.API.Repo)
 
     unless tags[:async] do
-      Ecto.Adapters.SQL.Sandbox.mode(ReleaseAdmin.Repo, {:shared, self()})
+      Ecto.Adapters.SQL.Sandbox.mode(Buildex.API.Repo, {:shared, self()})
     end
 
     :ok

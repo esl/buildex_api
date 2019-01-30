@@ -1,8 +1,8 @@
-defmodule ReleaseAdmin.Factory do
-  alias ReleaseAdmin.Repo
+defmodule Buildex.API.Factory do
+  alias Buildex.API.Repo
   use ExMachina.Ecto, repo: Repo
 
-  alias ReleaseAdmin.{Repository, User, Tag, Task}
+  alias Buildex.API.{Repository, User, Tag, Task}
 
   @spec user_factory() :: User.t()
   def user_factory do
