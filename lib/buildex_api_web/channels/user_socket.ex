@@ -1,11 +1,28 @@
-defmodule ReleaseAdminWeb.UserSocket do
+defmodule BuildexApiWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", ReleaseAdminWeb.RoomChannel
+  # channel "room:*", BuildexApiWeb.RoomChannel
 
   ## Transports
-  transport(:websocket, Phoenix.Transports.WebSocket)
+  # transport(:websocket, Phoenix.Transports.WebSocket)
+
+
+
+# Instead of defining transports in your socket.ex file:
+
+# transport :websocket, Phoenix.Transport.Websocket,
+#   key1: value1, key2: value2, key3: value3
+
+# transport :longpoll, Phoenix.Transport.LongPoll,
+#   key1: value1, key2: value2, key3: value3
+
+# You should configure websocket/longpoll in your endpoint.ex:
+
+# socket "/socket", MyApp.UserSocket,
+#   websocket: [key1: value1, key2: value2, key3: value3],
+#   longpoll: [key1: value1, key2: value2, key3: value3]
+
   # transport :longpoll, Phoenix.Transports.LongPoll
 
   # Socket params are passed from the client and can
@@ -30,7 +47,7 @@ defmodule ReleaseAdminWeb.UserSocket do
   # Would allow you to broadcast a "disconnect" event and terminate
   # all active sockets and channels for a given user:
   #
-  #     ReleaseAdminWeb.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
+  #     BuildexApiWeb.Endpoint.broadcast("user_socket:#{user.id}", "disconnect", %{})
   #
   # Returning `nil` makes this socket anonymous.
   def id(_socket), do: nil

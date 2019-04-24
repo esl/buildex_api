@@ -1,2 +1,2 @@
-<%= render ReleaseAdminWeb.RepositoriesView, "_form.html", assigns %>
+<%= render BuildexApiWeb.RepositoriesView, "_form.html", assigns %>
 <%= link "All Repos", to: repositories_path(@conn, :index), class: "btn btn-primary" %>

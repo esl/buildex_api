@@ -1,4 +1,4 @@
-defmodule ReleaseAdmin.Repo.Migrations.AddDockerCredentialsToTasks do
+defmodule BuildexApi.Repo.Migrations.AddDockerCredentialsToTasks do
   use Ecto.Migration
 
   def change do

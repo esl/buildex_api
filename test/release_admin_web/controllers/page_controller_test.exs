@@ -1,5 +1,5 @@
-defmodule ReleaseAdminWeb.PageControllerTest do
-  use ReleaseAdminWeb.ConnCase
+defmodule BuildexApiWeb.PageControllerTest do
+  use BuildexApiWeb.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

@@ -1,5 +1,5 @@
-defmodule ReleaseAdminWeb.PageController do
-  use ReleaseAdminWeb, :controller
+defmodule BuildexApiWeb.PageController do
+  use BuildexApiWeb, :controller
 
   def index(conn, _params) do
     render(conn, "index.html")

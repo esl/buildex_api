@@ -1,5 +1,5 @@
-defmodule ReleaseAdminWeb.TaskController do
-  use ReleaseAdminWeb, :controller
+defmodule BuildexApiWeb.TaskController do
+  use BuildexApiWeb, :controller
 
   alias Buildex.API.Repository.Service, as: RepositoryService
   alias Buildex.API.Task.Service, as: TaskService

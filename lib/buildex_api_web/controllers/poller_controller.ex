@@ -1,5 +1,5 @@
-defmodule ReleaseAdminWeb.PollerController do
-  use ReleaseAdminWeb, :controller
+defmodule BuildexApiWeb.PollerController do
+  use BuildexApiWeb, :controller
 
   require Logger
 

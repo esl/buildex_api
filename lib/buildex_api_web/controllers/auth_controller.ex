@@ -1,5 +1,5 @@
-defmodule ReleaseAdminWeb.AuthController do
-  use ReleaseAdminWeb, :controller
+defmodule BuildexApiWeb.AuthController do
+  use BuildexApiWeb, :controller
   require Logger
 
   plug(Ueberauth)

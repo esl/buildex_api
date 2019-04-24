@@ -1,3 +1,3 @@
-defmodule ReleaseAdminWeb.PageViewTest do
-  use ReleaseAdminWeb.ConnCase, async: true
+defmodule BuildexApiWeb.PageViewTest do
+  use BuildexApiWeb.ConnCase, async: true
 end

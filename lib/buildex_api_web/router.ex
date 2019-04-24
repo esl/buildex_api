@@ -1,5 +1,5 @@
-defmodule ReleaseAdminWeb.Router do
-  use ReleaseAdminWeb, :router
+defmodule BuildexApiWeb.Router do
+  use BuildexApiWeb, :router
 
   pipeline :browser do
     plug(:accepts, ["html"])
@@ -7,7 +7,7 @@ defmodule ReleaseAdminWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
-    plug(ReleaseAdminWeb.Plugs.UserSession)
+    plug(BuildexApiWeb.Plugs.UserSession)
   end
 
   pipeline :api do
@@ -20,18 +20,18 @@ defmodule ReleaseAdminWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
-    plug(ReleaseAdminWeb.Plugs.Authenticate)
-    plug(ReleaseAdminWeb.Plugs.UserSession)
+    plug(BuildexApiWeb.Plugs.Authenticate)
+    plug(BuildexApiWeb.Plugs.UserSession)
   end
 
-  scope "/", ReleaseAdminWeb do
+  scope "/", BuildexApiWeb do
     # Use the default browser stack
     pipe_through(:browser)
 
     get("/", PageController, :index)
   end
 
-  scope "/", ReleaseAdminWeb do
+  scope "/", BuildexApiWeb do
     pipe_through(:browser_auth)
 
     resources("/repos", RepositoriesController) do
@@ -40,7 +40,7 @@ defmodule ReleaseAdminWeb.Router do
     end
   end
 
-  scope "/auth", ReleaseAdminWeb do
+  scope "/auth", BuildexApiWeb do
     pipe_through(:browser)
     get("/:provider", AuthController, :request)
     get("/:provider/callback", AuthController, :callback)
@@ -49,7 +49,7 @@ defmodule ReleaseAdminWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", ReleaseAdminWeb do
+  # scope "/api", BuildexApiWeb do
   #   pipe_through :api
   # end
 end

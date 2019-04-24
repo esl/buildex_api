@@ -1,3 +1,3 @@
-defmodule ReleaseAdminWeb.LayoutViewTest do
-  use ReleaseAdminWeb.ConnCase, async: true
+defmodule BuildexApiWeb.LayoutViewTest do
+  use BuildexApiWeb.ConnCase, async: true
 end

@@ -1,5 +1,5 @@
-defmodule ReleaseAdminWeb.RepositoriesController do
-  use ReleaseAdminWeb, :controller
+defmodule BuildexApiWeb.RepositoriesController do
+  use BuildexApiWeb, :controller
 
   alias Buildex.API.Repository
   alias Buildex.API.Repository.Service, as: RepositoryService

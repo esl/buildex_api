@@ -1,4 +1,4 @@
-# ReleaseAdmin
+# BuildexApi
 
 [![Build Status](https://travis-ci.org/esl/release_admin.svg?branch=master)](https://travis-ci.org/esl/release_admin)
 

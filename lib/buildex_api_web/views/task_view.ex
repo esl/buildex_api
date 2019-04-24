@@ -1,3 +1,3 @@
-defmodule ReleaseAdminWeb.TaskView do
-  use ReleaseAdminWeb, :view
+defmodule BuildexApiWeb.TaskView do
+  use BuildexApiWeb, :view
 end

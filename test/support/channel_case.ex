@@ -1,4 +1,4 @@
-defmodule ReleaseAdminWeb.ChannelCase do
+defmodule BuildexApiWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -21,7 +21,7 @@ defmodule ReleaseAdminWeb.ChannelCase do
       use Phoenix.ChannelTest
 
       # The default endpoint for testing
-      @endpoint ReleaseAdminWeb.Endpoint
+      @endpoint BuildexApiWeb.Endpoint
     end
   end
 

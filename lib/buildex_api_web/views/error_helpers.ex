@@ -1,4 +1,4 @@
-defmodule ReleaseAdminWeb.ErrorHelpers do
+defmodule BuildexApiWeb.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -36,9 +36,9 @@ defmodule ReleaseAdminWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(ReleaseAdminWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(BuildexApiWeb.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(ReleaseAdminWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(BuildexApiWeb.Gettext, "errors", msg, opts)
     end
   end
 end

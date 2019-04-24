@@ -7,7 +7,7 @@ defmodule Buildex.API.AuthTest do
   alias Buildex.API.Services.Github
   alias Buildex.API.Auth.Session
 
-  alias ReleaseAdminWeb.StubsGeneration
+  alias BuildexApiWeb.StubsGeneration
 
   setup :verify_on_exit!
 

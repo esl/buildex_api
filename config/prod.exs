@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :buildex_api, ReleaseAdminWeb.Endpoint,
+config :buildex_api, BuildexApiWeb.Endpoint,
   http: [port: {:system, :integer, "PORT", 8080}],
   load_from_system_env: true,
   url: [host: {:system, "HOST", "localhost"}],

@@ -2,7 +2,7 @@ defmodule Buildex.API.Application do
   use Application
   alias Buildex.API.Encryption.Vault
   alias Buildex.API.Repo
-  alias ReleaseAdminWeb.Endpoint
+  alias BuildexApiWeb.Endpoint
 
   def start(_type, _args) do
     import Supervisor.Spec

@@ -1,4 +1,4 @@
-defmodule ReleaseAdmin.Repo.Migrations.CreateUsers do
+defmodule BuildexApi.Repo.Migrations.CreateUsers do
   use Ecto.Migration
 
   def change do

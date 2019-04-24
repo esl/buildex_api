@@ -1,5 +1,5 @@
-defmodule ReleaseAdminWeb.ErrorView do
-  use ReleaseAdminWeb, :view
+defmodule BuildexApiWeb.ErrorView do
+  use BuildexApiWeb, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

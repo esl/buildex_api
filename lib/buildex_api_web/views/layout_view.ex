@@ -1,3 +1,3 @@
-defmodule ReleaseAdminWeb.LayoutView do
-  use ReleaseAdminWeb, :view
+defmodule BuildexApiWeb.LayoutView do
+  use BuildexApiWeb, :view
 end

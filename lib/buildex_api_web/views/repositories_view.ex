@@ -1,3 +1,3 @@
-defmodule ReleaseAdminWeb.RepositoriesView do
-  use ReleaseAdminWeb, :view
+defmodule BuildexApiWeb.RepositoriesView do
+  use BuildexApiWeb, :view
 end

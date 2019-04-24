@@ -1,4 +1,4 @@
-defmodule ReleaseAdminWeb.Plugs.UserSession do
+defmodule BuildexApiWeb.Plugs.UserSession do
   import Plug.Conn
 
   alias Buildex.API.{Repo, User}

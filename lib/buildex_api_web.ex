@@ -1,12 +1,12 @@
-defmodule ReleaseAdminWeb do
+defmodule BuildexApiWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use ReleaseAdminWeb, :controller
-      use ReleaseAdminWeb, :view
+      use BuildexApiWeb, :controller
+      use BuildexApiWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -19,10 +19,10 @@ defmodule ReleaseAdminWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: ReleaseAdminWeb
+      use Phoenix.Controller, namespace: BuildexApiWeb
       import Plug.Conn
-      import ReleaseAdminWeb.Router.Helpers
-      import ReleaseAdminWeb.Gettext
+      import BuildexApiWeb.Router.Helpers
+      import BuildexApiWeb.Gettext
     end
   end
 
@@ -30,7 +30,7 @@ defmodule ReleaseAdminWeb do
     quote do
       use Phoenix.View,
         root: "lib/buildex_api_web/templates",
-        namespace: ReleaseAdminWeb
+        namespace: BuildexApiWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
@@ -38,9 +38,9 @@ defmodule ReleaseAdminWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import ReleaseAdminWeb.Router.Helpers
-      import ReleaseAdminWeb.ErrorHelpers
-      import ReleaseAdminWeb.Gettext
+      import BuildexApiWeb.Router.Helpers
+      import BuildexApiWeb.ErrorHelpers
+      import BuildexApiWeb.Gettext
     end
   end
 
@@ -55,7 +55,7 @@ defmodule ReleaseAdminWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import ReleaseAdminWeb.Gettext
+      import BuildexApiWeb.Gettext
     end
   end
 

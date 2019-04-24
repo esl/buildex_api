@@ -1,4 +1,4 @@
-defmodule ReleaseAdmin.Repo.Migrations.AddAdapterToRepos do
+defmodule BuildexApi.Repo.Migrations.AddAdapterToRepos do
   use Ecto.Migration
 
   def change do

@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :buildex_api, ReleaseAdminWeb.Endpoint,
+config :buildex_api, BuildexApiWeb.Endpoint,
   http: [port: 4001],
   server: false
 

@@ -1,6 +1,6 @@
-defmodule ReleaseAdminWeb.AuthControllerTest do
-  use ReleaseAdminWeb.ConnCase
-  alias ReleaseAdminWeb.StubsGeneration
+defmodule BuildexApiWeb.AuthControllerTest do
+  use BuildexApiWeb.ConnCase
+  alias BuildexApiWeb.StubsGeneration
 
   setup do
     {:ok, github_oauth: StubsGeneration.generate_github_auth_response()}

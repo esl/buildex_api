@@ -1,7 +1,9 @@
-defmodule ReleaseAdminWeb.Endpoint do
+defmodule BuildexApiWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :buildex_api
 
-  socket("/socket", ReleaseAdminWeb.UserSocket)
+  socket "/socket", BuildexApiWeb.UserSocket,
+  websocket: [],
+  longpoll: []
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -42,7 +44,7 @@ defmodule ReleaseAdminWeb.Endpoint do
     signing_salt: "NjA04236"
   )
 
-  plug(ReleaseAdminWeb.Router)
+  plug(BuildexApiWeb.Router)
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.
@@ -53,4 +55,11 @@ defmodule ReleaseAdminWeb.Endpoint do
   def init(_key, config) do
     Confex.Resolver.resolve(config)
   end
+
+
+
+
+
+
+
 end

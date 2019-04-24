@@ -1,4 +1,4 @@
-defmodule ReleaseAdminWeb.ConnCase do
+defmodule BuildexApiWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -19,10 +19,10 @@ defmodule ReleaseAdminWeb.ConnCase do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
-      import ReleaseAdminWeb.Router.Helpers
+      import BuildexApiWeb.Router.Helpers
 
       # The default endpoint for testing
-      @endpoint ReleaseAdminWeb.Endpoint
+      @endpoint BuildexApiWeb.Endpoint
     end
   end
 

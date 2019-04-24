@@ -1,4 +1,4 @@
-defmodule ReleaseAdminWeb.Plugs.Authenticate do
+defmodule BuildexApiWeb.Plugs.Authenticate do
   import Plug.Conn
   import Phoenix.Controller
 

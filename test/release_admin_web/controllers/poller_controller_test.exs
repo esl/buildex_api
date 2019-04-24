@@ -1,5 +1,5 @@
-defmodule ReleaseAdminWeb.PollerControllerTest do
-  use ReleaseAdminWeb.ConnCase
+defmodule BuildexApiWeb.PollerControllerTest do
+  use BuildexApiWeb.ConnCase
   import Mimic
   import Buildex.API.Factory
   import ExUnit.CaptureLog

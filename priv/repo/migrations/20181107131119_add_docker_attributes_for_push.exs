@@ -1,4 +1,4 @@
-defmodule ReleaseAdmin.Repo.Migrations.AddDockerAttributesForPush do
+defmodule BuildexApi.Repo.Migrations.AddDockerAttributesForPush do
   use Ecto.Migration
 
   def change do
