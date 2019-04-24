@@ -1,7 +1,7 @@
 use Mix.Config
 
-config :buildex_api, BuildexApiWeb.Endpoint,
-  http: [port: {:system, :integer, "PORT", 8080}],
+config :buildex_api, Buildex.API.Web.Endpoint,
+  http: [port: {:system, :integer, "BUILPORT", 8080}],
   load_from_system_env: true,
   url: [host: {:system, "HOST", "localhost"}],
   port: {:system, :integer, "PORT", 8080},

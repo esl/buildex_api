@@ -1,4 +1,4 @@
-defmodule BuildexApi.Repo.Migrations.CreateTags do
+defmodule Buildex.API.Repo.Migrations.CreateTags do
   use Ecto.Migration
 
   def change do

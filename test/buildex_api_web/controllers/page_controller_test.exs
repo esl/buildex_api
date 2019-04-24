@@ -1,5 +1,5 @@
-defmodule BuildexApiWeb.PageControllerTest do
-  use BuildexApiWeb.ConnCase
+defmodule Buildex.API.Web.PageControllerTest do
+  use Buildex.API.Web.ConnCase
 
   test "GET /", %{conn: conn} do
     conn = get(conn, "/")

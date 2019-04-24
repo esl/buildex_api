@@ -1,5 +1,5 @@
-defmodule BuildexApiWeb.Router do
-  use BuildexApiWeb, :router
+defmodule Buildex.API.Web.Router do
+  use Buildex.API.Web, :router
 
   pipeline :browser do
     plug(:accepts, ["html"])
@@ -7,7 +7,7 @@ defmodule BuildexApiWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
-    plug(BuildexApiWeb.Plugs.UserSession)
+    plug(Buildex.API.Web.Plugs.UserSession)
   end
 
   pipeline :api do
@@ -20,18 +20,18 @@ defmodule BuildexApiWeb.Router do
     plug(:fetch_flash)
     plug(:protect_from_forgery)
     plug(:put_secure_browser_headers)
-    plug(BuildexApiWeb.Plugs.Authenticate)
-    plug(BuildexApiWeb.Plugs.UserSession)
+    plug(Buildex.API.Web.Plugs.Authenticate)
+    plug(Buildex.API.Web.Plugs.UserSession)
   end
 
-  scope "/", BuildexApiWeb do
+  scope "/", Buildex.API.Web do
     # Use the default browser stack
     pipe_through(:browser)
 
     get("/", PageController, :index)
   end
 
-  scope "/", BuildexApiWeb do
+  scope "/", Buildex.API.Web do
     pipe_through(:browser_auth)
 
     resources("/repos", RepositoriesController) do
@@ -40,7 +40,7 @@ defmodule BuildexApiWeb.Router do
     end
   end
 
-  scope "/auth", BuildexApiWeb do
+  scope "/auth", Buildex.API.Web do
     pipe_through(:browser)
     get("/:provider", AuthController, :request)
     get("/:provider/callback", AuthController, :callback)
@@ -48,8 +48,4 @@ defmodule BuildexApiWeb.Router do
     delete("/logout", AuthController, :delete)
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", BuildexApiWeb do
-  #   pipe_through :api
-  # end
 end

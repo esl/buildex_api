@@ -1,4 +1,4 @@
-defmodule BuildexApi.Repo.Migrations.CreateTasks do
+defmodule Buildex.API.Repo.Migrations.CreateTasks do
   use Ecto.Migration
 
   def change do

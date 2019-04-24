@@ -1,5 +1,5 @@
-defmodule BuildexApiWeb.PollerControllerTest do
-  use BuildexApiWeb.ConnCase
+defmodule Buildex.API.Web.PollerControllerTest do
+  use Buildex.API.Web.ConnCase
   import Mimic
   import Buildex.API.Factory
   import ExUnit.CaptureLog

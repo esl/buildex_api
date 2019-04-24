@@ -1,5 +1,5 @@
-defmodule BuildexApiWeb.PageController do
-  use BuildexApiWeb, :controller
+defmodule Buildex.API.Web.PageController do
+  use Buildex.API.Web, :controller
 
   def index(conn, _params) do
     render(conn, "index.html")

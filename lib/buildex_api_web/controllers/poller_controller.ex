@@ -1,5 +1,5 @@
-defmodule BuildexApiWeb.PollerController do
-  use BuildexApiWeb, :controller
+defmodule Buildex.API.Web.PollerController do
+  use Buildex.API.Web, :controller
 
   require Logger
 

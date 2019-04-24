@@ -1,5 +1,6 @@
 defmodule Buildex.API.Services.ReleasePoller do
-  alias Buildex.API.{Repository, Services.RPC}
+  alias Buildex.API.Services.RPC
+  alias Buildex.API.Repository
 
   @spec start_polling_repo(Repository.t()) :: {:error, any()} | {:ok, any()}
   def start_polling_repo(repo) do

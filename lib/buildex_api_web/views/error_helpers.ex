@@ -1,4 +1,4 @@
-defmodule BuildexApiWeb.ErrorHelpers do
+defmodule Buildex.API.Web.ErrorHelpers do
   @moduledoc """
   Conveniences for translating and building error messages.
   """
@@ -36,9 +36,9 @@ defmodule BuildexApiWeb.ErrorHelpers do
     # should be written to the errors.po file. The :count option is
     # set by Ecto and indicates we should also apply plural rules.
     if count = opts[:count] do
-      Gettext.dngettext(BuildexApiWeb.Gettext, "errors", msg, msg, count, opts)
+      Gettext.dngettext(Buildex.API.Web.Gettext, "errors", msg, msg, count, opts)
     else
-      Gettext.dgettext(BuildexApiWeb.Gettext, "errors", msg, opts)
+      Gettext.dgettext(Buildex.API.Web.Gettext, "errors", msg, opts)
     end
   end
 end

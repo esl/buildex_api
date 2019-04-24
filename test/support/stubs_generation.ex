@@ -1,4 +1,4 @@
-defmodule BuildexApiWeb.StubsGeneration do
+defmodule Buildex.API.Web.StubsGeneration do
   def generate_github_auth_response do
     git_id = :rand.uniform(1_000_000)
 

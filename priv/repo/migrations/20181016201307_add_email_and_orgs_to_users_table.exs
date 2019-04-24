@@ -1,4 +1,4 @@
-defmodule BuildexApi.Repo.Migrations.AddEmailAndOrgsToUsersTable do
+defmodule Buildex.API.Repo.Migrations.AddEmailAndOrgsToUsersTable do
   use Ecto.Migration
 
   def up do

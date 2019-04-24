@@ -1,4 +1,4 @@
-defmodule BuildexApiWeb.Plugs.Authenticate do
+defmodule Buildex.API.Web.Plugs.Authenticate do
   import Plug.Conn
   import Phoenix.Controller
 

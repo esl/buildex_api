@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :buildex_api, BuildexApiWeb.Endpoint,
+config :buildex_api, Buildex.API.Web.Endpoint,
   http: [port: 4001],
   server: false
 

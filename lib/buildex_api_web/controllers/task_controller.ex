@@ -1,5 +1,5 @@
-defmodule BuildexApiWeb.TaskController do
-  use BuildexApiWeb, :controller
+defmodule Buildex.API.Web.TaskController do
+  use Buildex.API.Web, :controller
 
   alias Buildex.API.Repository.Service, as: RepositoryService
   alias Buildex.API.Task.Service, as: TaskService

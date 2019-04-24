@@ -1,5 +1,5 @@
-defmodule BuildexApiWeb.ErrorView do
-  use BuildexApiWeb, :view
+defmodule Buildex.API.Web.ErrorView do
+  use Buildex.API.Web, :view
 
   # If you want to customize a particular status code
   # for a certain format, you may uncomment below.

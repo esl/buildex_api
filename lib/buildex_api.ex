@@ -1,6 +1,6 @@
-defmodule BuildexApi do
+defmodule Buildex.API do
   @moduledoc """
-  BuildexApi keeps the contexts that define your domain
+  Buildex.API.keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

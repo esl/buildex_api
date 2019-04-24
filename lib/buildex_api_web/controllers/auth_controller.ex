@@ -1,5 +1,5 @@
-defmodule BuildexApiWeb.AuthController do
-  use BuildexApiWeb, :controller
+defmodule Buildex.API.Web.AuthController do
+  use Buildex.API.Web, :controller
   require Logger
 
   plug(Ueberauth)

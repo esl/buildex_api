@@ -1,6 +1,6 @@
-defmodule BuildexApiWeb.AuthControllerTest do
-  use BuildexApiWeb.ConnCase
-  alias BuildexApiWeb.StubsGeneration
+defmodule Buildex.API.Web.AuthControllerTest do
+  use Buildex.API.Web.ConnCase
+  alias Buildex.API.Web.StubsGeneration
 
   setup do
     {:ok, github_oauth: StubsGeneration.generate_github_auth_response()}

@@ -1,3 +1,3 @@
-defmodule BuildexApiWeb.RepositoriesView do
-  use BuildexApiWeb, :view
+defmodule Buildex.API.Web.RepositoriesView do
+  use Buildex.API.Web, :view
 end

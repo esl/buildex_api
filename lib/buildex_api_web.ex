@@ -1,28 +1,11 @@
-defmodule BuildexApiWeb do
-  @moduledoc """
-  The entrypoint for defining your web interface, such
-  as controllers, views, channels and so on.
-
-  This can be used in your application as:
-
-      use BuildexApiWeb, :controller
-      use BuildexApiWeb, :view
-
-  The definitions below will be executed for every view,
-  controller, etc, so keep them short and clean, focused
-  on imports, uses and aliases.
-
-  Do NOT define functions inside the quoted expressions
-  below. Instead, define any helper function in modules
-  and import those modules here.
-  """
+defmodule Buildex.API.Web do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: BuildexApiWeb
+      use Phoenix.Controller, namespace: Buildex.API.Web
       import Plug.Conn
-      import BuildexApiWeb.Router.Helpers
-      import BuildexApiWeb.Gettext
+      import Buildex.API.Web.Router.Helpers
+      import Buildex.API.Web.Gettext
     end
   end
 
@@ -30,7 +13,7 @@ defmodule BuildexApiWeb do
     quote do
       use Phoenix.View,
         root: "lib/buildex_api_web/templates",
-        namespace: BuildexApiWeb
+        namespace: Buildex.API.Web
 
       # Import convenience functions from controllers
       import Phoenix.Controller, only: [get_flash: 2, view_module: 1]
@@ -38,9 +21,9 @@ defmodule BuildexApiWeb do
       # Use all HTML functionality (forms, tags, etc)
       use Phoenix.HTML
 
-      import BuildexApiWeb.Router.Helpers
-      import BuildexApiWeb.ErrorHelpers
-      import BuildexApiWeb.Gettext
+      import Buildex.API.Web.Router.Helpers
+      import Buildex.API.Web.ErrorHelpers
+      import Buildex.API.Web.Gettext
     end
   end
 
@@ -55,7 +38,7 @@ defmodule BuildexApiWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import BuildexApiWeb.Gettext
+      import Buildex.API.Web.Gettext
     end
   end
 

@@ -1,6 +1,6 @@
 use Mix.Config
 
-config :buildex_api, BuildexApiWeb.Endpoint,
+config :buildex_api, Buildex.API.Web.Endpoint,
   http: [port: 4000],
   debug_errors: true,
   code_reloader: true,
@@ -14,7 +14,7 @@ config :buildex_api, BuildexApiWeb.Endpoint,
     ]
   ]
 
-config :buildex_api, BuildexApiWeb.Endpoint,
+config :buildex_api, Buildex.API.Web.Endpoint,
   live_reload: [
     patterns: [
       ~r{priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$},

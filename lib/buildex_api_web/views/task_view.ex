@@ -1,3 +1,3 @@
-defmodule BuildexApiWeb.TaskView do
-  use BuildexApiWeb, :view
+defmodule Buildex.API.Web.TaskView do
+  use Buildex.API.Web, :view
 end

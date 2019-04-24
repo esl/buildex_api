@@ -1,2 +1,2 @@
-<%= render BuildexApiWeb.RepositoriesView, "_form.html", assigns %>
+<%= render Buildex.API.Web.RepositoriesView, "_form.html", assigns %>
 <%= link "All Repos", to: repositories_path(@conn, :index), class: "btn btn-primary" %>

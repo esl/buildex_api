@@ -1,5 +1,5 @@
-defmodule BuildexApiWeb.TaskControllerTest do
-  use BuildexApiWeb.ConnCase
+defmodule Buildex.API.Web.TaskControllerTest do
+  use Buildex.API.Web.ConnCase
   import Buildex.API.Factory
 
   alias Buildex.API.Auth.Session

@@ -1,8 +1,8 @@
-defmodule BuildexApiWeb.Endpoint do
+defmodule Buildex.API.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :buildex_api
 
-  socket "/socket", BuildexApiWeb.UserSocket,
-  websocket: [],
+  socket "/socket", Buildex.API.Web.UserSocket,
+  websocket: true,
   longpoll: []
 
   # Serve at "/" the static files from "priv/static" directory.
@@ -44,7 +44,7 @@ defmodule BuildexApiWeb.Endpoint do
     signing_salt: "NjA04236"
   )
 
-  plug(BuildexApiWeb.Router)
+  plug(Buildex.API.Web.Router)
 
   @doc """
   Callback invoked for dynamically configuring the endpoint.
