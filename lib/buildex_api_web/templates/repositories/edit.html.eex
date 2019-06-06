@@ -7,6 +7,13 @@
 <% end %>
 
 <%= form_for @changeset, repositories_path(@conn, :update, @repo), fn f -> %>
+
+  <div class="form-group">
+    <label for="repository_url">Repository URL</label>
+    <%= text_input f, :repository_url, class: "form-control", id: "repository_url", disabled: true %>
+  </div>
+
+
   <div class="form-group">
     <label for="github_token">Github Token</label>
     <%= text_input f, :github_token, class: "form-control", id: "github_token"%>
