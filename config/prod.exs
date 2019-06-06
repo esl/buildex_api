@@ -4,7 +4,7 @@ config :buildex_api, Buildex.API.Web.Endpoint,
   http: [port: {:system, :integer, "BUILDEX_PORT", 8080}],
   load_from_system_env: true,
   url: [host: {:system, "HOST", "localhost"}],
-  port: {:system, :integer, "PORT", 8080},
+  port: {:system, :integer, "BUILDEX_PORT", 8080},
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true
 

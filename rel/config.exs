@@ -33,8 +33,8 @@ end
 # when running `mix release`, the first release in the file
 # will be used by default
 
-release :release_admin do
-  set(version: current_version(:release_admin))
+release :buildex_api do
+  set(version: current_version(:buildex_api))
 
   set(
     applications: [
@@ -45,7 +45,8 @@ release :release_admin do
   set(
     commands: [
       migrate: "rel/commands/migrate.sh",
-      create: "rel/commands/create.sh"
+      create: "rel/commands/create.sh",
+      help: "rel/commands/help.sh"
     ]
   )
 end

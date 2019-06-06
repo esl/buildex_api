@@ -1,6 +1,6 @@
 # BuildexApi
 
-[![Build Status](https://travis-ci.org/esl/release_admin.svg?branch=master)](https://travis-ci.org/esl/release_admin)
+[![Build Status](https://travis-ci.org/esl/buildex_api.svg?branch=master)](https://travis-ci.org/esl/buildex_api)
 
 # Development prerequisites
 
@@ -12,7 +12,7 @@
 
 Before you start, you might want to quickly read over the Github guides to [creating an oauth application](https://developer.github.com/apps/building-oauth-apps/creating-an-oauth-app/), and [authorizing oauth applications](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/).
 
-You will need to create a new OAuth application on Github and provide it's `CLIENT_ID` and `CLIENT_SECRET` values to the release_admin application.
+You will need to create a new OAuth application on Github and provide it's `CLIENT_ID` and `CLIENT_SECRET` values to the buildex_api application.
 
 The steps involved are as follows :
 
@@ -58,25 +58,25 @@ Having created the application, you will be given the opportunity to copy the GI
 
 ## Export environmental variables
 
-Export these environmnental variables into the environment in which you will run the 'release_admin' application:
+Export these environmnental variables into the environment in which you will run the 'buildex_api' application:
 
-```
-export GITHUB_CLIENT_ID=<GITHUB_CLIENT_ID>
-export GITHUB_CLIENT_SECRET=<GITHUB_CLIENT_SECRET>
+```shell
+export BUILDEX_GITHUB_CLIENT_ID=<your github client_id>
+export BUILDEX_GITHUB_CLIENT_SECRET=<your github client_secret>
 ```
 
 ## Generate and export storage crypto key 
 
 You will need to generate a random encryption key to prevent credentials being stolen from database backups, etc (data at rest). You can do so using the following code. 
 
-```
+```shell
 iex(2)> 32 |> :crypto.strong_rand_bytes() |> Base.encode64
 "VdEdsw4VChhQuVQkLxZ/BVbZ/Eayo7qThpxw2g3DKuA="
 ```
 
 Once you have done so, you will need to expose the base64 value as the environmental variable `DB_SECRET_KEY` i.e: 
 
-```
+```shell
 export BUILDEX_DB_SECRET_KEY="VdEdsw4VChhQuVQkLxZ/BVbZ/Eayo7qThpxw2g3DKuA="
 ```
 
@@ -84,16 +84,16 @@ export BUILDEX_DB_SECRET_KEY="VdEdsw4VChhQuVQkLxZ/BVbZ/Eayo7qThpxw2g3DKuA="
 
 Bootstrap the database, fetch Javascript dependencies, and start the Phoenix web server :
 
-  * Install Elixir dependencies with `mix deps.get`
-  * Create and migrate the database with `mix ecto.create && mix ecto.migrate`
-  * Install Node.js dependencies with `cd assets && npm install`
-  * Start Phoenix endpoint with `iex --name admin@127.0.0.1 --cookie secret -S mix phx.server`
+* Install Elixir dependencies with `mix deps.get`
+* Create and migrate the database with `mix ecto.create && mix ecto.migrate`
+* Install Node.js dependencies with `cd assets && npm install`
+* Start Phoenix endpoint with `iex --name admin@127.0.0.1 --cookie secret -S mix phx.server`
 
 ## Log in and follow the auth process
 
 Navigate to the [authorization screen](http://localhost:4000/auth/github) and follow the authorization process.
 
-This application will ask for the [following](https://github.com/sescobb27/release_admin/blob/a881d7412e934b12533fe3a05349d81f30bfe1df/config/config.exs#L27) (read only) privileges :
+This application will ask for the [following](https://github.com/sescobb27/buildex_api/blob/a881d7412e934b12533fe3a05349d81f30bfe1df/config/config.exs#L27) (read only) privileges :
 
 1. read:user
 2. user:email,

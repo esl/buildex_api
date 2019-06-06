@@ -24,7 +24,7 @@ services:
       # Set user/password for Postgres
       POSTGRES_USERNAME: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DATABASE: "release_admin"
+      POSTGRES_DATABASE: "buildex_api"
       POSTGRES_HOSTNAME: db
       DB_SECRET_KEY: ${DB_SECRET_KEY}
       NODE_COOKIE: secret
@@ -40,7 +40,7 @@ services:
     environment:
       POSTGRES_USERNAME: postgres
       POSTGRES_PASSWORD: postgres
-      POSTGRES_DATABASE: "release_admin"
+      POSTGRES_DATABASE: "buildex_api"
       POSTGRES_HOSTNAME: db
       DB_SECRET_KEY: ${DB_SECRET_KEY}
       NODE_COOKIE: secret
@@ -58,7 +58,7 @@ services:
       POSTGRES_USERNAME: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_HOSTNAME: db
-      POSTGRES_DATABASE: "release_admin"
+      POSTGRES_DATABASE: "buildex_api"
       DB_SECRET_KEY: ${DB_SECRET_KEY}
       GITHUB_CLIENT_ID: ${GITHUB_CLIENT_ID}
       GITHUB_CLIENT_SECRET: ${GITHUB_CLIENT_SECRET}

@@ -44,7 +44,7 @@ RUN mix phx.digest
 RUN mix release
 
 ENV REPLACE_OS_VARS=true
-ENTRYPOINT ["_build/prod/rel/release_admin/bin/release_admin"]
+ENTRYPOINT ["_build/prod/rel/buildex_api/bin/buildex_api"]
 
 HEALTHCHECK --start-period=60s --interval=10s --timeout=10s CMD curl -f "http://localhost:8080/?health" || exit 1
 
