@@ -9,4 +9,4 @@ build:
 	docker build --build-arg=tag="$(GIT_TAG)" -t "$(PROJECT):$(DOCKER_BRANCH)-$(DOCKER_TAG_AND_HASH)" -t "$(PROJECT):latest" . 
 
 dev:
-	mix deps.get && exec iex --name buildex_api@127.0.0.1 --cookie buildix -S mix
+	mix deps.get && exec iex --name buildex_api@127.0.0.1 --cookie buildix -S mix phx.server
