@@ -50,7 +50,7 @@ defmodule Buildex.API.Web.TaskControllerTest do
 
     test "uploads build file", %{conn: conn, repo: repo} do
       content = "This Is A Test"
-      build_file = Path.join([System.cwd!(), "test", "fixtures", "buildfile_test"])
+      build_file = Path.join([File.cwd!(), "test", "fixtures", "buildfile_test"])
       File.write!(build_file, content)
 
       on_exit(fn ->

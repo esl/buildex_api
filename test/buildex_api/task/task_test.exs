@@ -137,7 +137,7 @@ defmodule Buildex.API.TaskTest do
   describe "build file content" do
     setup do
       content = "This Is A Test"
-      build_file = Path.join([System.cwd!(), "test", "fixtures", "buildfile_test"])
+      build_file = Path.join([File.cwd!(), "test", "fixtures", "buildfile_test"])
       File.write!(build_file, content)
 
       on_exit(fn ->
