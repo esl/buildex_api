@@ -26,6 +26,35 @@ For testing purposes we've chosen the following values, the only important value
 
 Having created the application, you will be given the opportunity to copy the GITHUB_CLIENT_ID, and GITHUB_CLIENT_SECRET - Github offers the option to regenerate the secret later if need be.
 
+## Environmental variables and their defaults (dev)
+
+|Key|Description|Type|Default|
+|`BUILDEX_DB_SECRET_KEY`|crypto key for db|See below||
+|`BUILDEX_GITHUB_CLIENT_ID`|github client id|string||
+|`BUILDEX_GITHUB_CLIENT_SECRET`|github client secret|string||
+|`BUILDEX_NODE_COOKIE`|erlang shared cookie||
+|`BUILDEX_POSTGRES_DATABASE`||
+|`BUILDEX_POSTGRES_HOSTNAME`||
+|`BUILDEX_POSTGRES_PASSWORD`||
+|`BUILDEX_POSTGRES_USER`||
+|`BUILDEX_POSTGRES_USERNAME`||
+|`BUILDEX_POLLER_DOMAIN`|buildex_poller@127.0.0.1|string|
+|`BUILDEX_RPC_IMPL`||
+
+## Environmental variables and their defaults (prod)
+
+|Key|Description|Type|Default|
+|`BUILDEX_DB_SECRET_KEY`|crypto key for db|See below||
+|`BUILDEX_GITHUB_CLIENT_ID`|github client id|string||
+|`BUILDEX_GITHUB_CLIENT_SECRET`|github client secret|string||
+|`BUILDEX_NODE_COOKIE`|erlang shared cookie||
+|`BUILDEX_POSTGRES_DATABASE`||
+|`BUILDEX_POSTGRES_HOSTNAME`||
+|`BUILDEX_POSTGRES_PASSWORD`||
+|`BUILDEX_POSTGRES_USER`||
+|`BUILDEX_POSTGRES_USERNAME`||
+|`BUILDEX_POLLER_DOMAIN`||
+|`BUILDEX_RPC_IMPL`||
 
 ## Export environmental variables
 
@@ -48,7 +77,7 @@ iex(2)> 32 |> :crypto.strong_rand_bytes() |> Base.encode64
 Once you have done so, you will need to expose the base64 value as the environmental variable `DB_SECRET_KEY` i.e: 
 
 ```
-export DB_SECRET_KEY="VdEdsw4VChhQuVQkLxZ/BVbZ/Eayo7qThpxw2g3DKuA="
+export BUILDEX_DB_SECRET_KEY="VdEdsw4VChhQuVQkLxZ/BVbZ/Eayo7qThpxw2g3DKuA="
 ```
 
 ## Bootstrap DB
