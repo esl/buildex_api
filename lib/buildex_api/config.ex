@@ -26,6 +26,14 @@ defmodule Buildex.API.Config do
     end
   end
 
+ def string_to_nodename(value) do
+    {:ok, String.to_atom("'#{value}'")   }
+  rescue
+    e in ArgumentError -> {:error, e.message}
+  end
+
+
+
   def base64decode(value) do
     {:ok, value |> Base.decode64!()}
   rescue
