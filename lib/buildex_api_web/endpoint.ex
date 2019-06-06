@@ -1,9 +1,10 @@
 defmodule Buildex.API.Web.Endpoint do
   use Phoenix.Endpoint, otp_app: :buildex_api
 
-  socket "/socket", Buildex.API.Web.UserSocket,
-  websocket: true,
-  longpoll: []
+  socket("/socket", Buildex.API.Web.UserSocket,
+    websocket: true,
+    longpoll: []
+  )
 
   # Serve at "/" the static files from "priv/static" directory.
   #
@@ -55,11 +56,4 @@ defmodule Buildex.API.Web.Endpoint do
   def init(_key, config) do
     Confex.Resolver.resolve(config)
   end
-
-
-
-
-
-
-
 end

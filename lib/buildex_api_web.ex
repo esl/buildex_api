@@ -1,5 +1,4 @@
 defmodule Buildex.API.Web do
-
   def controller do
     quote do
       use Phoenix.Controller, namespace: Buildex.API.Web

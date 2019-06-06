@@ -7,21 +7,19 @@ defmodule Buildex.API.Web.UserSocket do
   ## Transports
   # transport(:websocket, Phoenix.Transports.WebSocket)
 
+  # Instead of defining transports in your socket.ex file:
 
+  # transport :websocket, Phoenix.Transport.Websocket,
+  #   key1: value1, key2: value2, key3: value3
 
-# Instead of defining transports in your socket.ex file:
+  # transport :longpoll, Phoenix.Transport.LongPoll,
+  #   key1: value1, key2: value2, key3: value3
 
-# transport :websocket, Phoenix.Transport.Websocket,
-#   key1: value1, key2: value2, key3: value3
+  # You should configure websocket/longpoll in your endpoint.ex:
 
-# transport :longpoll, Phoenix.Transport.LongPoll,
-#   key1: value1, key2: value2, key3: value3
-
-# You should configure websocket/longpoll in your endpoint.ex:
-
-# socket "/socket", MyApp.UserSocket,
-#   websocket: [key1: value1, key2: value2, key3: value3],
-#   longpoll: [key1: value1, key2: value2, key3: value3]
+  # socket "/socket", MyApp.UserSocket,
+  #   websocket: [key1: value1, key2: value2, key3: value3],
+  #   longpoll: [key1: value1, key2: value2, key3: value3]
 
   # transport :longpoll, Phoenix.Transports.LongPoll
 

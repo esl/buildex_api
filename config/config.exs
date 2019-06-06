@@ -1,6 +1,5 @@
 use Mix.Config
 
-
 config :phoenix, :json_library, Jason
 
 config :buildex_api,
@@ -29,7 +28,7 @@ config :ueberauth, Ueberauth.Strategy.Github.OAuth,
 config :buildex_api,
        :poller_domain,
        {:system, {Buildex.API.Config, :string_to_nodename, []}, "BUILDEX_POLLER_DOMAIN",
-        :'buildex_poller@127.0.0.1'}
+        :"buildex_poller@127.0.0.1"}
 
 config :buildex_api,
        :db_secret_key,

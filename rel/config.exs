@@ -46,7 +46,7 @@ release :buildex_api do
     commands: [
       migrate: "rel/commands/migrate.sh",
       create: "rel/commands/create.sh",
-      help: "rel/commands/help.sh"
+      env_vars: "rel/commands/env_vars.sh"
     ]
   )
 end

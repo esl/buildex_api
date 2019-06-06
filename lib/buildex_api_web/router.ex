@@ -47,5 +47,4 @@ defmodule Buildex.API.Web.Router do
     post("/:provider/callback", AuthController, :callback)
     delete("/logout", AuthController, :delete)
   end
-
 end
