@@ -23,4 +23,6 @@ config :ueberauth, Ueberauth.Strategy.Github.OAuth,
   client_id: {:system, "GITHUB_CLIENT_ID"},
   client_secret: {:system, "GITHUB_CLIENT_SECRET"}
 
+config :phoenix, :json_library, Jason
+
 import_config "#{Mix.env()}.exs"
