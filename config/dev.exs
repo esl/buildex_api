@@ -42,5 +42,3 @@ config :buildex_api, Buildex.API.Repo,
   database: "buildex_api_dev",
   hostname: {:system, "POSTGRES_HOSTNAME", "localhost"},
   pool_size: 10
-
-config :buildex_api, :poller_domain, :"poller@127.0.0.1"

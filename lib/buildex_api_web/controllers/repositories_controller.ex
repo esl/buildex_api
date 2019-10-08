@@ -3,6 +3,7 @@ defmodule ReleaseAdminWeb.RepositoriesController do
 
   alias Buildex.API.Repository
   alias Buildex.API.Repository.Service, as: RepositoryService
+  alias Buildex.API.Services.ReleasePoller
   alias Plug.Conn
 
   @spec index(Conn.t(), any()) :: Conn.t()
@@ -51,7 +52,8 @@ defmodule ReleaseAdminWeb.RepositoriesController do
 
   @spec delete(Conn.t(), map()) :: Conn.t()
   def delete(conn, %{"id" => id}) do
-    _repo = RepositoryService.delete!(id)
+    repo = RepositoryService.delete!(id)
+    ReleasePoller.stop_polling_repo(repo)
 
     conn
     |> put_flash(:info, "Repository deleted successfully.")

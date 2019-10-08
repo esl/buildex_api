@@ -12,7 +12,13 @@ defmodule Buildex.API.Config do
   end
 
   def get_poller_domain do
-    get_val!(:poller_domain)
+    Node.list()
+    |> Enum.filter(fn node ->
+      node
+      |> Atom.to_string()
+      |> String.starts_with?("poller")
+    end)
+    |> Enum.random()
   end
 
   def get_rpc_impl do
