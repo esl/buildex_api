@@ -1,9 +1,13 @@
 defmodule ReleaseAdminWeb.RepositoriesControllerTest do
   use ReleaseAdminWeb.ConnCase
   import Buildex.API.Factory
+  import Mimic
 
   alias Buildex.API.Auth.Session
   alias Buildex.API.Repository.Service, as: RepositoryService
+  alias Buildex.API.Services.RPC
+
+  setup :verify_on_exit!
 
   setup %{conn: conn} do
     user = insert(:user)
@@ -117,6 +121,11 @@ defmodule ReleaseAdminWeb.RepositoriesControllerTest do
 
   describe "delete" do
     test "fully deletes a repo", %{conn: conn} do
+      RPC
+      |> stub(:stop_polling_repo, fn _ ->
+        :ok
+      end)
+
       %{id: repo_id} = insert(:repository)
       conn = delete(conn, repositories_path(conn, :delete, repo_id))
       redirected_path = redirected_to(conn)
